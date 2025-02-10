@@ -124,8 +124,8 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            <section className="min-h-screen w-full flex  px-4 md:px-8 flex-col items-center justify-center bg-[url('/images/about/perks.png')] bg-contain bg-no-repeat">
-                <h2 className="text-center text-white text-2xl font-bold mb-8">Perks & Benefits at Sharpsys</h2>
+            <section className="min-h-screen w-full flex px-4 md:px-8 sm:py-4 md:py-2 flex-col items-center justify-center bg-gradient-to-r from-[#ff2f54] via-[#ff4345] via-[#ff6e2a] via-[#ff9511] via-[#f1ae09] via-[#ffa807] via-[#efae0a] via-[#cbb718] via-[#bcba1d] via-[#82c935] via-[#5bca62] via-[#49ca7e] via-[#2fcaa6] via-[#1ccac3] to-[#15cacf]">
+                <h2 className="text-center text-white text-2xl pt-4 md:pt-2 lg:pt-0 font-bold mb-8">Perks & Benefits at Sharpsys</h2>
                 <div className="bg-white rounded-lg shadow-lg p-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:w-3/5 justify-items-center">
                     <div className='p-4 border-b-2 border-dashed'>
                         <h3 className="font-semibold text-black text-lg mb-2">Professional & Personal Growth:</h3>

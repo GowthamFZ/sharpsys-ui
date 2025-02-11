@@ -124,31 +124,43 @@ export default function CareersPage() {
                 </div>
             </section>
 
-            <section className="min-h-screen w-full flex px-4 md:px-8 sm:py-4 md:py-2 flex-col items-center justify-center bg-gradient-to-r from-[#ff2f54] via-[#ff4345] via-[#ff6e2a] via-[#ff9511] via-[#f1ae09] via-[#ffa807] via-[#efae0a] via-[#cbb718] via-[#bcba1d] via-[#82c935] via-[#5bca62] via-[#49ca7e] via-[#2fcaa6] via-[#1ccac3] to-[#15cacf]">
-                <h2 className="text-center text-white text-2xl pt-4 md:pt-2 lg:pt-0 font-bold mb-8">Perks & Benefits at Sharpsys</h2>
-                <div className="bg-white rounded-lg shadow-lg p-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:w-3/5 justify-items-center">
-                    <div className='p-4 border-b-2 border-dashed'>
-                        <h3 className="font-semibold text-black text-lg mb-2">Professional & Personal Growth:</h3>
-                        <p className="text-gray-600">Invest in your growth with training and education opportunities.</p>
-                    </div>
-                    <div className='p-4 border-b-2 border-dashed'>
-                        <h3 className="font-semibold text-black text-lg mb-2">Rewards:</h3>
-                        <p className="text-gray-600">Be recognized for your hard work with performance-based incentives.</p>
-                    </div>
-                    <div className='p-4 border-b-2 border-dashed'>
-                        <h3 className="font-semibold text-black text-lg mb-2">Financial Security:</h3>
-                        <p className="text-gray-600">Enjoy the peace of mind that comes with Provident Fund benefits.</p>
-                    </div>
-                    <div className='p-4 border-b-2 border-dashed'>
-                        <h3 className="font-semibold text-black text-lg mb-2">Work-Life Balance:</h3>
-                        <p className="text-gray-600">Participate in social events and team-building activities for a well-rounded experience.</p>
-                    </div>
-                    <div className='p-4'>
-                        <h3 className="font-semibold text-black text-lg mb-2">Family-Friendly Benefits:</h3>
-                        <p className="text-gray-600">Take advantage of paid maternity benefits to support your family.</p>
+
+                            
+            <section className="min-h-screen w-full relative">
+                <div className="careerperks relative flex px-4 md:px-8 sm:py-4 md:py-2 flex-col items-center justify-center">
+
+                    <div className="absolute top-0 left-0 w-full h-[50%] gradient-bg"></div>
+
+                    <h2 className="text-center text-white text-2xl py-6 font-bold mb-4 relative z-10">
+                        Perks & Benefits at Sharpsys
+                    </h2>
+
+                    <div className="bg-white rounded-lg shadow-lg p-2 grid grid-cols-1 md:grid-cols-2 gap-6 md:w-3/5 justify-items-center relative z-10">
+                        <div className="p-4 border-b-2 border-dashed">
+                            <h3 className="font-semibold text-black text-lg mb-2">Professional & Personal Growth:</h3>
+                            <p className="text-gray-600">Invest in your growth with training and education opportunities.</p>
+                        </div>
+                        <div className="p-4 border-b-2 border-dashed">
+                            <h3 className="font-semibold text-black text-lg mb-2">Rewards:</h3>
+                            <p className="text-gray-600">Be recognized for your hard work with performance-based incentives.</p>
+                        </div>
+                        <div className="p-4 border-b-2 border-dashed">
+                            <h3 className="font-semibold text-black text-lg mb-2">Financial Security:</h3>
+                            <p className="text-gray-600">Enjoy the peace of mind that comes with Provident Fund benefits.</p>
+                        </div>
+                        <div className="p-4 border-b-2 border-dashed">
+                            <h3 className="font-semibold text-black text-lg mb-2">Work-Life Balance:</h3>
+                            <p className="text-gray-600">Participate in social events and team-building activities for a well-rounded experience.</p>
+                        </div>
+                        <div className="p-4">
+                            <h3 className="font-semibold text-black text-lg mb-2">Family-Friendly Benefits:</h3>
+                            <p className="text-gray-600">Take advantage of paid maternity benefits to support your family.</p>
+                        </div>
                     </div>
                 </div>
             </section>
+
+
 
             <section id="careers-open" className="bg-white mb-4 mt-3">
                 <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-3">

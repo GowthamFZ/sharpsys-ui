@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           {/* <!-- Footer Top --> */}
           <div className="py-5 lg:py-5">
-            <div className="mt-4 grid grid-cols-2 gap-15 md:grid-cols-5 lg:grid-cols-5 md:gap-6">
-              <div className="">
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              <div className="flex flex-col items-center">
                 <motion.div
                   variants={{
                     hidden: {
@@ -64,7 +64,7 @@ const Footer = () => {
 
 
 
-                  <div className="w-full h-auto pt-8 flex gap-2 flex-wrap">
+                  <div className="w-full h-auto pt-8 flex gap-2 flex-wrap justify-center">
                     <a href="https://x.com/sharpsys38391" target="_blank"
                       className="bg-white p-2 rounded-3xl flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 72 72" fill="none">
@@ -107,7 +107,7 @@ const Footer = () => {
                   </div>
                 </motion.div>
               </div>
-              <div className="md:ml-10">
+              <div>
                 <motion.div
                   variants={{
                     hidden: {
@@ -125,7 +125,7 @@ const Footer = () => {
                   transition={{ duration: 1, delay: 0.1 }}
                   viewport={{ once: true }}
                   className="animate_top"
-                >
+                > <div className="space-y-3">
                   <h4 className="mb-2 text-xl dark:text-white">
                     Home
                   </h4>
@@ -157,10 +157,11 @@ const Footer = () => {
                       </Link>
                     </li>
                   </ul>
+                  </div>
                 </motion.div>
               </div>
 
-              <div className="md:-ml-10">
+              <div>
                 <motion.div
                   variants={{
                     hidden: {
@@ -179,6 +180,7 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
+                   <div className="space-y-4">
                   <h5 className="mb-2 text-xl dark:text-white">
                     Our Services
                   </h5>
@@ -210,10 +212,11 @@ const Footer = () => {
                       </a>
                     </li>
                   </ul>
+                  </div>
                 </motion.div>
               </div>
 
-              <div className="md:-ml-20">
+              <div >
                 <motion.div
                   variants={{
                     hidden: {
@@ -232,6 +235,7 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
+                   <div className="space-y-4">
                   <h4 className="mb-2 text-xl dark:text-white">
                     Our Products
                   </h4>
@@ -253,10 +257,11 @@ const Footer = () => {
                       </Link>
                     </li>
                   </ul>
+                  </div>
                 </motion.div>
               </div>
 
-              <div className="md:-ml-25">
+              <div>
                 <motion.div
                   variants={{
                     hidden: {
@@ -275,6 +280,7 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
+                   <div className="space-y-4">
                   <h4 className="mb-2 text-xl dark:text-white">
                     Company
                   </h4>
@@ -296,6 +302,7 @@ const Footer = () => {
                       </a>
                     </li>
                   </ul>
+                  </div>
                 </motion.div>
               </div>
 

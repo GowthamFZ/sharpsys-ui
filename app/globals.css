@@ -475,3 +475,19 @@ svg {
 html {
   scroll-behavior: smooth;
 }
+
+
+.careerperks {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg {
+  background: linear-gradient(to right, #ff2f54, #ff4345, #ff6e2a, #ff9511, #f1ae09, #ffa807, #efae0a, #cbb718, #bcba1d, #82c935, #5bca62, #49ca7e, #2fcaa6, #1ccac3, #15cacf);
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}

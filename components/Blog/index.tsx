@@ -1,6 +1,5 @@
 import React from "react";
 import BlogItem from "./BlogItem";
-import BlogData from "./blogData";
 import { motion } from "framer-motion";
 import { Autoplay, Pagination, Thumbs } from "swiper";
 import "swiper/css";
@@ -8,7 +7,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Blog = () => {
+
+
+const Blog = ({ props }) => {
   return (
     <>
       <section id="homeBlog">
@@ -78,17 +79,15 @@ const Blog = () => {
                   },
                 }}
               >
-                {BlogData.map((review) => (
-                  <SwiperSlide key={review?._id}>
-                    <BlogItem blog={review} />
+                {props.map((review) => (
+                  <SwiperSlide key={review.slug}>
+                    <BlogItem allPosts={review} />
                   </SwiperSlide>
                 ))}
               </Swiper>
             </div>
-
           </motion.div>
         </section>
-
       </section>
     </>
   );

@@ -1,8 +1,5 @@
 "use client"
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import UserStories from "@/components/UserStories";
-import Image from "next/image";
 import milestones from "./milestoneData";
 import dynamic from 'next/dynamic';
 

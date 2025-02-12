@@ -43,21 +43,25 @@ const Footer = () => {
                     Subscribe to the newsletter
                   </h1>
 
-                  <form action="#">
-                    <div className="relative mb-1">
-                      <input
-                        type="text"
-                        placeholder="Email"
-                        className="w-full rounded-lg border text-black border-stroke px-6 py-3 shadow-solid-11 focus:border-primary focus:outline-none dark:border-strokedark dark:bg-black dark:shadow-none dark:focus:border-primary"
-                      />
-                    </div>
-                    <div className="relative mb-5">
-                      <button type="button" className="absolute right-0 p-2 text-white buttoncolor-bg rounded-lg">
-                        Subscribe
-                      </button>
+                  <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+                    <button
+                      className="!absolute right-1 top-1 z-10 select-none rounded buttoncolor-bg py-2 px-1 text-center align-middle text-xs uppercase text-white transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
+                      type="button"
+                      data-ripple-light="true"
+                    >
+                      Subscribe
+                    </button>
+                    <input
+                      type="email"
+                      className="peer h-full w-full rounded-[7px] border border-buttoncolor-bg bg-transparent px-3 py-2.5 pr-20 text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-buttoncolor-bg placeholder-shown:border-t-buttoncolor-bg focus:border-2 focus:buttoncolor-bg focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:buttoncolor-bg"
+                      placeholder=" "
+                      required
+                    />
+                    <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-white transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-white after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-white peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-white peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-white peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-white">
+                      Email Address
+                    </label>
+                  </div>
 
-                    </div>
-                  </form>
 
 
                   <div className="w-full h-auto pt-8 flex gap-2 flex-wrap">
@@ -300,7 +304,7 @@ const Footer = () => {
           {/* <!-- Footer Top --> */}
 
           {/* <!-- Footer Bottom --> */}
-          <div className="flex flex-col text-right flex-wrap border-t border-stroke pt-2 pb-3 dark:border-strokedark">
+          <div className="flex flex-col text-center flex-wrap border-t border-stroke pt-2 pb-3 dark:border-strokedark">
             <motion.div
               variants={{
                 hidden: {
@@ -320,7 +324,7 @@ const Footer = () => {
               className="animate_top"
             >
               <span>
-                &copy; - 2022 Sharpsys Software Solutions [l] Pvt. Ltd., | All rights reserved
+                &copy; - 2025 Sharpsys Software Solutions [l] Pvt. Ltd., | All rights reserved
               </span>
             </motion.div>
           </div>

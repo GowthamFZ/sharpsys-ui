@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const ServicesAnalytics = () => {
   const [activeMenu, setActiveMenu] = useState(1);
@@ -323,7 +323,7 @@ const ServicesAnalytics = () => {
                       </h3>
                     </div>
                     <div className={`pl-6 border-l-4 border-[#ccbf5a] rounded-e-lg transition ease-in-out shadow-lg ${activeSection === 'ml7' ? 'shadow-lg bg-[#fff8db]' : 'border-l-4'} }`} onClick={() => toggleSection('ml7')}>
-                      <h3 className={`cursor-pointer flex p-1 justify-between items-center  text-blacktext ${activeSection === 'ml7' ? ' text-blacktext' : 'text-gray-800'}`}>
+                      <h3 className={`text-sm cursor-pointer flex p-1 justify-between items-center  text-blacktext ${activeSection === 'ml7' ? ' text-blacktext' : 'text-gray-800'}`}>
                         Image and Video Analysis: Unlock Visual Data Insights
                       </h3>
                     </div>

@@ -167,7 +167,7 @@ header {
 }
 
 .subDropdown {
-  @apply xl:!translate-x-0;
+  @apply xl:!translate-x-0 ;
 }
 
 .arrow-up {

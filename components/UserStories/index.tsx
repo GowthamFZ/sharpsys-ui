@@ -1,5 +1,4 @@
 "use client";
-import SectionHeader from "../Common/SectionHeader";
 
 import { Autoplay, Pagination, Thumbs } from "swiper";
 import "swiper/css";
@@ -10,20 +9,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import UserStories from "./userStories";
 import { userStoriesData } from "./userStoriesData";
-import { useEffect, useState } from "react";
 
 const DashboardCarousel = (props) => {
-const slideRenderedPage = props.pageRoot;
+  const slideRenderedPage = props.pageRoot;
   return (
     <>
-    <section id="testimonials">
-    <h3 className="mx-auto mb-4 text-xl text-grey-400 text-center">
-            Discover user success stories
-          </h3>
-          <h4 className="mx-auto mb-4 text-3xl text-center font-bold text-black dark:text-white">
-            Hear <span className="textStartGradient">about us</span> from <span className="textLastGradient"> our happy clients</span>
-          </h4>
-    </section>
+      <section id="testimonials">
+        <h3 className="mx-auto mb-4 text-xl text-grey-400 text-center">
+          Discover user success stories
+        </h3>
+        <h4 className="mx-auto mb-4 text-3xl text-center font-bold text-black dark:text-white">
+          Hear <span className="textStartGradient">about us</span> from <span className="textLastGradient"> our happy clients</span>
+        </h4>
+      </section>
       <section className="userStoriesBackground">
         <motion.div
           variants={{
@@ -44,28 +42,28 @@ const slideRenderedPage = props.pageRoot;
           className="animate_top mx-auto mt-8 max-w-c-1235 px-4 md:px-8 xl:mt-16 xl:px-0"
         >
           <div id="userStories" className="swiper testimonial-02 h-full mb-20 pb-22.5">
-            
+
             <Swiper
               spaceBetween={0}
               slidesPerView={3}
               centeredSlides={true}
               centeredSlidesBounds={true}
-              
-          watchSlidesProgress
-          loop={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
-            // reverseDirection:true,
-            pauseOnMouseEnter:true
-          }}
-              
-           
+
+              watchSlidesProgress
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: true,
+                // reverseDirection:true,
+                pauseOnMouseEnter: true
+              }}
+
+
 
               pagination={{
-                
+
               }}
-              
+
               modules={[Autoplay, Pagination, Thumbs]}
               breakpoints={{
                 // when window width is >= 640px
@@ -88,8 +86,8 @@ const slideRenderedPage = props.pageRoot;
                 </SwiperSlide>
               ))}
             </Swiper>
-            </div>
-          
+          </div>
+
         </motion.div>
       </section>
     </>

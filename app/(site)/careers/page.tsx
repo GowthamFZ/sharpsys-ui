@@ -1,29 +1,39 @@
 "use client";
-// import { Metadata } from "next";
-import { useState } from 'react';
-import CareerData from "./careerMapData"
+import { useEffect, useState } from 'react';
 import CareerElements from "./CareerInfoData"
 import EmployeeStories from '@/components/employeeStories';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
+import { getCareerHeader, getCareers } from '@/lib/service';
 
+let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
+
 
     const [activeSection, setActiveSection] = useState(null);
     const [startCountup, setStartCountup] = useState(false);
+    const [careers, setCareers] = useState([]);
+    const [fetchData, setFetchData] = useState(false);
+    const [careerHeader, setCareerHeaders] = useState([]);
 
     // Toggle the active section
     const toggleSection = (section) => {
         setActiveSection(activeSection === section ? null : section);
     };
 
-    const getSectionClassName = (section) => {
-        return activeSection === section
-            ? 'font-bold border-l-4 border-black shadow-lg ml-2'
-            : 'font-semibold text-gray-800';
-    };
-
+    useEffect(() => {
+        const fetchCareer = async () => {
+            const allCareers = await getCareers();
+            const careerHeader = await getCareerHeader();
+            setCareers(allCareers);
+            setCareerHeaders(careerHeader);
+            setFetchData(true);
+        }
+        if (!fetchData) {
+            fetchCareer();
+        }
+    })
     return (
         <>
             <section className="pb-10 pt-24 md:pt-28 lg:pt-32">
@@ -155,58 +165,68 @@ export default function CareersPage() {
                     <h3 className="mb-1 text-3xl font-bold tracking-tight text-black dark:text-black">Explore your <span className='bg-gradient-to-r from-orange-400 via-yellow-500 via-lime-500 via-green-500 to-teal-500 text-transparent bg-clip-text'>dream career opportunities</span></h3>
                 </div>
             </section>
-            {CareerData.map((c) => (
+            {careerHeader.map((header) => (
+
                 <section className="bg-white mb-4">
                     <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-3">
-                        <h5 className="mb-1 text-xl font-bold tracking-tight text-black dark:text-black">{c.title}</h5>
+                        <h5 className="mb-1 text-xl font-bold tracking-tight text-black dark:text-black">{header.name.replace(/&#?\w+;/, match => unicodes[match])}</h5>
+
                         <div className="relative overflow-x-auto">
                             <table className="min-w-full table-fixed text-sm border text-left rtl:text-right">
                                 <thead className="text-xs">
                                     <tr>
                                         <th scope="col" className="px-6 py-1 whitespace-nowrap">
-                                            {c.heading.positiontitle}
+                                            {"Position"}
                                         </th>
                                         <th scope="col" className="px-6 py-1 whitespace-nowrap">
-                                            {c.heading.exptitle}
+                                            {"Experience"}
                                         </th>
                                         <th scope="col" className="px-6 py-1 whitespace-nowrap">
-                                            {c.heading.locationtitle}
+                                            {"Location"}
                                         </th>
                                         <th scope="col" className="px-6 py-1">
-                                            {c.heading.noofopeningstitle}
+                                            {"No.Of.Openings"}
                                         </th>
                                         <th scope="col" className="px-6 py-1">
-                                            {c.heading.jobtypetitle}
+                                            {"Type"}
                                         </th>
                                         <th scope="col" className="px-6 py-1 w-9"></th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr className="bg-white text-black dark:text-black">
-                                        <td className="px-6 py-1 font-medium whitespace-nowrap w-96">
-                                            {c.job.position}
-                                        </td>
-                                        <td className="px-6 py-1">
-                                            {c.job.exp}
-                                        </td>
-                                        <td className="px-6 py-1">
-                                            {c.job.location}
-                                        </td>
-                                        <td className="px-6 py-1">
-                                            {c.job.noofopenings}
-                                        </td>
-                                        <td className="px-6 py-1">
-                                            {c.job.jobtype}
-                                        </td>
-                                        <td className="px-6 py-1 w-9">
-                                            <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                                                Apply
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {careers.map((career) => (
+                                        (career.acf.header === header.name.replace(/&#?\w+;/, match => unicodes[match]) ?
+                                            <tr className="bg-white text-black dark:text-black">
+                                                <td className="px-6 py-1 font-medium whitespace-nowrap w-96">
+                                                    {career.acf.position}
+                                                </td>
+                                                <td className="px-6 py-1">
+                                                    {career.acf.experience}
+                                                </td>
+                                                <td className="px-6 py-1">
+                                                    {career.acf.location}
+                                                </td>
+                                                <td className="px-6 py-1">
+                                                    {career.acf.noofopenings}
+                                                </td>
+                                                <td className="px-6 py-1">
+                                                    {career.acf.type}
+                                                </td>
+                                                <td className="px-6 py-1 w-9">
+                                                    <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                        Apply
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            : '')
+                                    ))}
                                 </tbody>
+
                             </table>
                         </div>
+
+
 
                     </div>
                 </section>

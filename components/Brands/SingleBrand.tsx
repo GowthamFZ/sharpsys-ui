@@ -10,9 +10,9 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
         <img
           className={imageLight}
           src={image}
-          alt={name}      
+          alt={name}
         />
-        </div>
+      </div>
     </>
   );
 };

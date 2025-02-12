@@ -1,6 +1,4 @@
 "use client";
-import SectionHeader from "../Common/SectionHeader";
-
 import { Autoplay, Pagination, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import EmployeeStories from "./employeeStories";
 import { employeeStories } from "./employeeStoriesData";
-import { useEffect, useState } from "react";
 
 const employeeTestimonial = () => {
   return (
@@ -35,28 +32,28 @@ const employeeTestimonial = () => {
           className="animate_top mx-auto max-w-c-1390"
         >
           <div id="userStories" className="swiper empTestimonial h-full mb-20 pb-22.5">
-            
+
             <Swiper
               spaceBetween={0}
               slidesPerView={3}
               centeredSlides={true}
               centeredSlidesBounds={true}
-              
-          watchSlidesProgress
-          loop={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
-            // reverseDirection:true,
-            pauseOnMouseEnter:true
-          }}
-              
-           
+
+              watchSlidesProgress
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: true,
+                // reverseDirection:true,
+                pauseOnMouseEnter: true
+              }}
+
+
 
               pagination={{
-                
+
               }}
-              
+
               modules={[Autoplay, Pagination, Thumbs]}
               breakpoints={{
                 // when window width is >= 640px
@@ -79,8 +76,8 @@ const employeeTestimonial = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            </div>
-          
+          </div>
+
         </motion.div>
       </section>
     </>

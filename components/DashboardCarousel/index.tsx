@@ -1,5 +1,4 @@
 "use client";
-import SectionHeader from "../Common/SectionHeader";
 
 import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
@@ -36,22 +35,22 @@ const DashboardCarousel = () => {
           {/* <!-- Slider main container --> */}
           <div className="swiper testimonial-01 mb-20 pb-22.5">
             {/* <!-- Additional required wrapper --> */}
-            
+
             <Swiper
               spaceBetween={30}
               slidesPerView={2}
               initialSlide={2}
               centeredSlides={true}
-              
-              
+
+
               loop={true}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
-                reverseDirection:true,
-                pauseOnMouseEnter:true
+                reverseDirection: true,
+                pauseOnMouseEnter: true
               }}
-              
+
               modules={[Autoplay, Pagination]}
               breakpoints={{
                 // when window width is >= 640px
@@ -74,8 +73,8 @@ const DashboardCarousel = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            </div>
-          
+          </div>
+
         </motion.div>
       </section>
     </>

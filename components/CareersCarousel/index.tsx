@@ -1,7 +1,6 @@
 "use client";
-import SectionHeader from "../Common/SectionHeader";
 
-import {Pagination,Autoplay,Thumbs } from "swiper";
+import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -57,8 +56,8 @@ const CareersCarousel = () => {
                     >
                         {images.map((src, index) => (
                             <SwiperSlide key={index}>
-                            <div className={`flex flex-col ${index % 2 === 0 ? 'flex-col-reverse' : 'flex-col'}`}>
-                               
+                                <div className={`flex flex-col ${index % 2 === 0 ? 'flex-col-reverse' : 'flex-col'}`}>
+
                                     <div className="w-full h-full">
                                         <img
                                             src="/images/career/team/carousel_background.png"
@@ -66,7 +65,7 @@ const CareersCarousel = () => {
                                             className="w-96 h-full object-cover object-contain rounded-lg"
                                         />
                                     </div>
-                                    
+
                                     <div className="w-full h-auto py-4">
                                         <img
                                             src={src}
@@ -75,9 +74,9 @@ const CareersCarousel = () => {
                                         />
                                     </div>
                                 </div>
-                            
-                        </SwiperSlide>
-                        
+
+                            </SwiperSlide>
+
                         ))}
                     </Swiper>
                 </div>

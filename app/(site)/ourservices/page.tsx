@@ -32,7 +32,7 @@ export default function OurServicePage() {
               <div className="animate-right md:w-9/12 lg:w-1/2">
                 <div className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black">
                   <h2 className="mb-7 text-2xl font-semibold text-blacktext dark:text-white xl:text-3xl">Get Started with us</h2>
-                  <form action="https://formbold.com/s/unique_form_id" method="POST">
+                  <form action="" method="POST">
                     <div className="mb-4 flex">
                       <input placeholder="Full name" className="w-full pb-2 pl-1  pt-2 rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-blacktext focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white" type="text" />
                     </div>
@@ -145,19 +145,19 @@ export default function OurServicePage() {
       </section>
 
       <section className="pb-8 bg-[#E6BD00] px-6 pt-3 md:pb-5 md:pt-2 lg:pb-8 lg:pt-8">
-        
-          <div className="animate_top mx-auto text-center">
-            <h2 className="mx-auto mb-2 text-3xl text-center font-bold text-blacktext dark:text-blacktext md:w-4/5 xl:w-10/12 xl:text-sectiontitle3">
-              Discover more ways of how  we can help your business thrive
-            </h2>
-            <p className="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%] text-center text-normalGray">
-              Explore our other given services that can help you enhance efficiency and streamline your
-              business.</p>
-          </div>
-          </section>
 
-          <section className="pb-8 px-6 pt-3 md:pb-5 md:pt-2 lg:pb-20 lg:pt-2">
-          <div className="mx-auto max-w-c-1390 px-4 md:px-8 xl:px-0">
+        <div className="animate_top mx-auto text-center">
+          <h2 className="mx-auto mb-2 text-3xl text-center font-bold text-blacktext dark:text-blacktext md:w-4/5 xl:w-10/12 xl:text-sectiontitle3">
+            Discover more ways of how  we can help your business thrive
+          </h2>
+          <p className="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%] text-center text-normalGray">
+            Explore our other given services that can help you enhance efficiency and streamline your
+            business.</p>
+        </div>
+      </section>
+
+      <section className="pb-8 px-6 pt-3 md:pb-5 md:pt-2 lg:pb-20 lg:pt-2">
+        <div className="mx-auto max-w-c-1390 px-4 md:px-8 xl:px-0">
           <div className="mt-4 grid grid-cols-1 gap-5.5 md:grid-cols-2 lg:mt-4 lg:grid-cols-2 xl:mt-4 xl:gap-5">
             <div className="ml-0 border cardBackground rounded-lg p-5 pt-5">
               <h2 className="text-2xl font-semibold text-white">CRM</h2>
@@ -209,7 +209,7 @@ export default function OurServicePage() {
           </div>
         </div>
       </section>
-  
+
       <ServicesCRM />
       <ServicesAnalytics />
       <ServicesBusinessIntelligence />
@@ -218,11 +218,11 @@ export default function OurServicePage() {
         <div className="min-h-64 w-full flex items-center justify-center bg-[url('/images/ourservices/email_bg.jpg')] bg-cover bg-center">
           <div className="max-w-6xl mx-auto py-8 flex flex-col md:flex-row items-center space-y-10 md:space-y-0 space-x-16">
             <div className=" w-full md:w-1/2 rounded-lg">
-                <img
-                  src="/images/ourProducts/email.jpg"
-                  alt="Email"
-                  className="w-full h-80 p-10 rounded-lg object-cover"
-                />
+              <img
+                src="/images/ourProducts/email.jpg"
+                alt="Email"
+                className="w-full h-80 p-10 rounded-lg object-cover"
+              />
             </div>
             <div className="text-white md:w-1/2">
               <h2 className="text-3xl font-bold mb-6">

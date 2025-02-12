@@ -16,29 +16,22 @@ const Brands = () => {
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <h4 className="mx-auto mb-5 text-3xl text-center font-bold text-black dark:text-white">
             Our Esteemed <span className="textStartGradient">Partners</span><span className="textLastGradient"> and Stakeholders</span>
-          </h4>        
-<div className="swipe mb-4 pb-4">
+          </h4>
+          <div className="swipe mb-4 pb-4">
             {/* <!-- Additional required wrapper --> */}
-            
+
             <Swiper
               spaceBetween={10}
-              slidesPerView={8}      
-              // loop={true}
-              // autoplay={{
-              //   delay: 2000,
-              //   disableOnInteraction: false,
-              //   reverseDirection:true,
-              //   pauseOnMouseEnter:true
-              // }}
+              slidesPerView={8}
               speed={3000}
-  autoplay={{
-    delay: -10,
-    disableOnInteraction: false,
-    pauseOnMouseEnter:true
-  }}
- 
-  loop={true}
-              
+              autoplay={{
+                delay: -10,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+              }}
+
+              loop={true}
+
               modules={[Autoplay, Pagination]}
               breakpoints={{
                 // when window width is >= 640px
@@ -57,12 +50,12 @@ const Brands = () => {
             >
               {brandData.map((brand, key) => (
                 <SwiperSlide className="homeUserSlide" key={brand?.id}>
-                  <SingleBrand brand={brand} key={key}/>
+                  <SingleBrand brand={brand} key={key} />
                 </SwiperSlide>
-            ))}
+              ))}
             </Swiper>
-            </div>
           </div>
+        </div>
         {/* </div> */}
       </section>
     </>

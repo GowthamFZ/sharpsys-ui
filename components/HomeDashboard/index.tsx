@@ -2,20 +2,16 @@
 import React, { useState } from "react";
 import Services from "../Services";
 import UserStories from "../UserStories";
-import HomeMap from "../HomeMap";
-
 import Blog from "../Blog";
-import { Tooltip as ReactToolTip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
-
-import { motion } from "framer-motion";
 import CountUp from 'react-countup';
 import RenderMap from "../RenderMap";
 import VisibilitySensor from 'react-visibility-sensor';
 import Link from "next/link";
 
-const HomeDashboard = () => {
-    const [content, setContent] = useState("");
+
+
+export default function HomeDashboard({ posts }) {
     const [startCountup, setStartCountup] = useState(false);
 
     return (
@@ -72,34 +68,35 @@ const HomeDashboard = () => {
                         </div>
                     </div>
                 </div>
-                <section className="py-4">
-                    <VisibilitySensor onChange={(isVisible: boolean | ((prevState: boolean) => boolean)) => setStartCountup(isVisible)} partialVisibility={true}>
-                        <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-                            <div className="flex md:flex-wrap xl:flex-row justify-center gap-8 lg:gap-42.5">
-                                <div className="animate_top text-center">
-                                    <h3 className="mb-2.5 text-2xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-                                        {startCountup && <CountUp end={100} duration={3} />}+
-                                    </h3>
-                                    <p className="text-xs">Client Satisfaction</p></div>
-                                <div className="animate_top text-center">
-                                    <h3 className="mb-2.5 text-2xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-                                        {startCountup && <CountUp end={24} duration={3} />}Hrs
-                                    </h3>
-                                    <p className="text-xs">Expert Support Team</p></div>
-                                <div className="animate_top text-center">
-                                    <h3 className="mb-2.5 text-2xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-                                        {startCountup && <CountUp end={1000} duration={3} />}+
-                                    </h3>
-                                    <p className="text-xs">Sales Count</p></div>
-                                <div className="animate_top text-center">
-                                    <h3 className="mb-2.5 text-2xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-                                        {startCountup && <CountUp end={40} duration={3} />}+
-                                    </h3>
-                                    <p className="text-xs">Client Worldwide</p></div>
+            </section>
+            <section className="bg-white py-1 mb-8">
+                <VisibilitySensor onChange={(isVisible: boolean | ((prevState: boolean) => boolean)) => setStartCountup(isVisible)} partialVisibility={true}>
+                    <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
+                        <div className="flex flex-wrap justify-center gap-6 lg:gap-20">
+                            <div className="animate_top text-center">
+                                <h3 className="text-2xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+                                    {startCountup && <CountUp end={100} duration={3} />}+
+                                </h3>
+                                <p className="text-lg lg:text-xl">Client Satisfaction</p></div>
+                            <div className="animate_top text-center">
+                                <h3 className="text-2xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+                                    {startCountup && <CountUp end={24} duration={3} />}+
+                                </h3>
+                                <p className="text-lg lg:text-xl">Expert Support Team</p></div>
+                            <div className="animate_top text-center">
+                                <h3 className="text-3xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+                                    {startCountup && <CountUp end={1000} duration={3} />}+
+                                </h3>
+                                <p className="text-lg lg:text-xl">Sales Count</p></div>
+                            <div className="animate_top text-center">
+                                <h3 className="text-3xl font-bold text-black dark:text-white xl:text-sectiontitle2">
+                                    {startCountup && <CountUp end={40} duration={3} />}+
+                                </h3>
+                                <p className="text-lg lg:text-xl">Client Worldwide</p>
                             </div>
                         </div>
-                    </VisibilitySensor>
-                </section>
+                    </div>
+                </VisibilitySensor>
             </section>
 
             <section className="py-11 mt-4 bg-[#1F0A3C] mb-15">
@@ -111,7 +108,6 @@ const HomeDashboard = () => {
                         Microsoft Dynamics & it's services
                     </h4>
                 </div>
-
 
                 <div className="flex flex-col md:flex-row gap-1">
                     <div className="px-6 mx-12 rounded-lg border border-stroke bg-slate-50 p-1 shadow-solid-3 transition-all hover:shadow-solid-4 dark:border-strokedark dark:bg-blacksection dark:hover:bg-hoverdark">
@@ -209,13 +205,10 @@ const HomeDashboard = () => {
             </section >
 
             {/* User Stories */}
-            <UserStories pageRoot={"home"}/>
-
-            <RenderMap renderFrom='home'/>
-            
+            <UserStories pageRoot={"home"} />
+            <RenderMap renderFrom='home' />
 
             {/* Homescreen career */}
-
             <section className="commonBackground p-12">
                 <div className="flex flex-wrap xl:px-12 xl:mx-24">
                     <div className="xl:w-1/2">
@@ -232,20 +225,16 @@ const HomeDashboard = () => {
                                 Join Sharpsys and thrive in a dynamic, collaborative environment where innovation and growth are at the forefront. Build your career with us, embrace new challenges, and be part of a team that values creativity, dedication, and success.
                             </p>
                             <Link href={"/careers/#careers-open"}>
-                            <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                                Career at Sharpsys
-                            </button></Link>
+                                <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                    Career at Sharpsys
+                                </button></Link>
                         </section>
                     </div>
                 </div>
-
             </section>
 
             {/* Blog */}
-            <Blog />
-
+            {<Blog props={posts} />}
         </>
     );
 };
-
-export default HomeDashboard;

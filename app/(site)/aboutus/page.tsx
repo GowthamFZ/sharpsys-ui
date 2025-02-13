@@ -90,7 +90,7 @@ export default function AboutUsPage() {
                 </div>
                 <div className="ml-0 border contactDialogue rounded-lg p-3 pt-3">
                   <img
-                    src="/images/about/Customer_centered.png"
+                    src="/images/about/Customer_Centered.png"
                     alt="Customer Centered"
                     className="w-40 h-40 p-4 object-cover"
                   />

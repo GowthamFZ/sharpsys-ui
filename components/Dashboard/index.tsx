@@ -22,7 +22,7 @@ const Hero = () => {
               <button type="button" className="text-black border button-border font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 hover:bg-rose-500 hover:text-white">
                 Get a quote
               </button>
-              <Link href={"https://calendly.com/"}>
+              <Link href={"https://calendly.com/contactus-sharpsyssoft/30min"}>
                 <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                   Schedule a call
                 </button>

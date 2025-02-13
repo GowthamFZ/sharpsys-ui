@@ -1,8 +1,8 @@
 export const servicesDataMap = {
     "Enterprise Solution": [
-        { id: 101, order:"01", name: "Microsoft Dynamics 365 F&O", description:"Streamline finance and operations for global businesses.", img: "/images/services/servicestab/F&O.jpg" },
-        { id: 102, order:"02", name: "Microsoft Dynamics 365 Business Central", description:"A cloud-based solution for SMBs to manage and grow.", img: "/images/services/servicestab/Business_Central.png" },
-        { id: 103, order:"03", name: "Microsoft Power Platform", description:"Empower data-driven decisions through automation and insights.", img: "/images/services/servicestab/Dynamics_365.png" },
+        { id: 101, order:"01", name: "Microsoft Dynamics 365 F&O", description:"Streamline finance and operations for global businesses.", img: "/images/services/servicestab/Dynamics_365_Ill.png" },
+        { id: 102, order:"02", name: "Microsoft Dynamics 365 Business Central", description:"A cloud-based solution for SMBs to manage and grow.", img: "/images/services/servicestab/Dynamics_365_Ill.png" },
+        { id: 103, order:"03", name: "Microsoft Power Platform", description:"Empower data-driven decisions through automation and insights.", img: "/images/services/servicestab/Dynamics_365_Ill.png" },
     ],
     "CRM": [
         { id: 201, order:"01", name: "Microsoft 365 Customer Engagement", description:"Enhance customer relationships with integrated solutions.", img: "/images/services/servicestab/Customer Engagement.jfif" },

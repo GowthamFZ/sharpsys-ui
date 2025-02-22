@@ -81,7 +81,7 @@ const ServicesMenu = (props) => {
                         isHovered === 4 && <BusinessIntelligence /> ||
                         isHovered === 5 && <StaffAugmentation />
                     )}
-                    <div className='w-auto border-b border-grey-600 ml-4 mr-4 mt-9'></div>
+                    <div className={`w-auto border-b border-grey-600 ml-4 mr-4`}></div>
                     <section className='w-11/12 p-2 relative'>
                         <span className='pl-2 w-full flex'>
                             <h3 className="ml-2 mb-0.5 text-segmenttitle text-white dark:text-white font-semibold">

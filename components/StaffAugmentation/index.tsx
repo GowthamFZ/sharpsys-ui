@@ -12,7 +12,7 @@ export default function StaffAugmentation() {
               <div className="mb-0.5 text-base text-white">
                 Resource Capabilities
               </div>
-
+              <div className="mb-0.5 text-base text-white"></div>
             </a>
           </div>
           <div className="w-full p-2">
@@ -21,7 +21,7 @@ export default function StaffAugmentation() {
               <div className="mb-0.5 text-base text-white">
                 Industry Verticals
               </div>
-
+              <div className="mb-0.5 text-base text-white"></div>
             </a>
           </div>
 

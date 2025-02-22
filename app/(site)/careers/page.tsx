@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
+import Link from 'next/link';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
@@ -42,7 +43,7 @@ export default function CareersPage() {
                         Be a <span className='bg-gradient-to-r from-green-400 via-emarald-500 via-red-500 via-orange-500 via-yellow-500 to-green-500 text-transparent bg-clip-text'>part of our proficient team</span>
                     </h2>
                 </div>
-                <div className="container px-12 py-4">
+                <div className="mx-auto p-6">
                     <img
                         src="/images/about/team.jpg"
                         alt="Team working"
@@ -101,9 +102,11 @@ export default function CareersPage() {
                             <p className="text-gray-600 mb-6">
                                 We are committed to delivering exceptional results. We value actions and our prime focus is on quality work. Join us and be part of a team that prioritizes results and makes an impact.
                             </p>
+                            <Link href={"#careersOpen"}>
                             <button className="bg-[#fe2f53] text-white py-2 px-8 rounded-2xl mt-4">
                                 View Open Roles
                             </button>
+                            </Link>
                         </div>
 
                         <div className="md:w-1/2 pl-0 md:pl-8 space-y-4 mt-6">
@@ -172,7 +175,7 @@ export default function CareersPage() {
 
 
 
-            <section id="careers-open" className="bg-white mb-4 mt-3">
+            <section id="careersOpen" className="bg-white mb-4 mt-3">
                 <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-3">
                     <h3 className="mb-1 text-3xl font-bold tracking-tight text-black dark:text-black">Explore your <span className='bg-gradient-to-r from-orange-400 via-yellow-500 via-lime-500 via-green-500 to-teal-500 text-transparent bg-clip-text'>dream career opportunities</span></h3>
                 </div>

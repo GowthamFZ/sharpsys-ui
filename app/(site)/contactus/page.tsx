@@ -2,6 +2,7 @@ import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
 import RenderMap from "@/components/RenderMap";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sharpsys",
@@ -19,9 +20,11 @@ export default function ContactUsPage() {
           <p className="text-white text-center">Share your story with us, and let's explore the possibilities together.</p>
         </div>
         <div className="gap-4 xl:justify-center text-center">
-          <button aria-label="Contact US" className="inline-flex items-center gap-2.5 rounded-lg buttoncolor-contactus-bg px-2 py-1 text-black duration-300 ease-in-out hover:bg-blackho dark:bg-btndark">
-            Contact us
-          </button>
+          <Link href={"#salesContact"}>
+            <button aria-label="Contact US" className="inline-flex items-center gap-2.5 rounded-lg buttoncolor-contactus-bg px-2 py-1 text-black duration-300 ease-in-out hover:bg-blackho dark:bg-btndark">
+              Contact us
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -44,9 +47,11 @@ export default function ContactUsPage() {
                 Looking for solutions to transform your business digitally? Reach out to us, and let’s customize
                 the perfect solution for your business.
               </p>
-              <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2">
-                Get In Touch
-              </button>
+              <Link href={"#salesContact"}>
+                <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2">
+                  Get In Touch
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -188,11 +193,8 @@ export default function ContactUsPage() {
         <RenderMap renderFrom='contactus' />
       </section>
 
-      <section id="requestdemo" className="pb-5 pt-10 md:pb-10 md:pt-18 lg:pb-14 lg:pt-12">
-        <div className="container mx-auto">
-          <Contact />
-        </div>
-      </section>
+      <Contact />
+
       <FAQ />
     </>
   );

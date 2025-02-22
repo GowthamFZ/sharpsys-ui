@@ -13,7 +13,7 @@ const FAQ = () => {
   return (
     <>
       {/* <!-- ===== FAQ Start ===== --> */}
-      <section className="py-11 bg-[#0B0A0A] mb-15">
+      <section className="py-11 bg-[#0B0A0A]">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <h3 className="mx-auto mb-2 text-xl text-white text-center">
             FAQ'S

@@ -51,7 +51,7 @@ const ProductsMenu = () => {
             <h3 className="ml-2 mb-0.5 text-segmenttitle text-black dark:text-white font-semibold">
               Need Different Solution?
             </h3>
-            <Link href={"/#salesContact"}>
+            <Link href={"/#salesContact"} scroll={true}>
               <button
                 aria-label="talk to sales button"
                 className="absolute border-l-red-500 border-t-yellow-500 border-r-teal-500 border-b-lime-500 right-0 rounded-full bg-transparent px-3.5 py-1 text-black text-xs border-2 border-black duration-300 ease-in-out hover:bg-headerbg hover:text-white"

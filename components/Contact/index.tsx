@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <>
       {/* <!-- ===== Contact Start ===== --> */}
-      <section id="salesContact" className="py-6 px-8 mt-4 mb-15 commonBackground">
+      <section id="salesContact" className="mt-4 commonBackground">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <div className="flex items-center gap-1 lg:gap-32.5">
             <div className="animate_left relative mx-auto hidden md:block md:w-1/2">

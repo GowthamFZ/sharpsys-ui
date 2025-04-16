@@ -182,13 +182,6 @@ export default function DialogWithForm({ open, onClose }) {
                     {errors.file && typeof errors.file === 'string' && (
   <div className="text-xs text-red-500">{errors.file}</div>
 )}
-
-{Array.isArray(errors.file) &&
-  errors.file.map((err, idx) =>
-    typeof err === 'string' ? (
-      <p key={idx} className="text-red-500 text-sm">{err}</p>
-    ) : null
-  )}
                   </CardBody>
                   <CardFooter className="pt-0 text-right">
                     <Button aria-label="send message" type="submit" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">

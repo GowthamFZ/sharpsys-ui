@@ -7,6 +7,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
+import DialogWithForm  from '@/components/Dialog';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
@@ -17,11 +18,15 @@ export default function CareersPage() {
     const [careers, setCareers] = useState([]);
     const [fetchData, setFetchData] = useState(false);
     const [careerHeader, setCareerHeaders] = useState([]);
+    const [open, setOpen] = useState(false);
+    // const handleDialog = () => setOpenDialog((cur) => !cur);
 
     // Toggle the active section
     const toggleSection = (section) => {
         setActiveSection(activeSection === section ? null : section);
     };
+
+    
 
     useEffect(() => {
         const fetchCareer = async () => {
@@ -229,9 +234,10 @@ export default function CareersPage() {
                                                     {career.acf.type}
                                                 </td>
                                                 <td className="px-6 py-1 w-9">
-                                                    <button type="button" className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                    <button type="button" onClick={() => setOpen(true)} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                                         Apply
                                                     </button>
+                                                    <DialogWithForm open={open} onClose={() => setOpen(false)} />
                                                 </td>
                                             </tr>
                                             : '')
@@ -250,6 +256,7 @@ export default function CareersPage() {
             <section>
                 <EmployeeStories />
             </section>
+            
         </>
     );
 }

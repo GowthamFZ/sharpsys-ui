@@ -1,14 +1,55 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { withZodSchema } from "formik-validator-zod";
+import { z } from "zod";
+import { sendEmail } from "@/lib/send-mail";
+import { Toaster, toast } from "sonner";
+
+const RegisterFormSchema = z
+  .object({
+    name: z
+      .string()
+      .min(2, "Name must be at least 2 characters long")
+      .max(50, "Name should be at most 25 characters long"),
+    emailAddress: z
+      .string().email("Invalid Email"),
+    description: z
+      .string()
+      .min(2, "Message must be at least 2 characters long")
+      .max(200, "Message should be at most 200 characters long")
+
+  });
+type RegisterFormSchemaType = z.infer<typeof RegisterFormSchema>;
 
 const Contact = () => {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
-  if (!hasMounted) {
-    return null;
-  }
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      emailAddress: "",
+      description: "",
+    },
+    onSubmit: async (values) => {
+      const mailText = `Name: ${values.name}\n  Email: ${values.emailAddress}\nMessage: ${values.description}`;
+      console.log(mailText);
+      const myPromise = new Promise<{ name: string }>((resolve) => {
+        setTimeout(() => {
+          resolve({ name: 'Send Request for Demo' });
+        }, 3000);
+      });
+
+      toast.promise(sendEmail({ name: values.name, email: values.emailAddress, subject: `${values.name} requested for demo`, message: values.description }), {
+        loading: 'Loading...',
+        success: (data: { name: string }) => {
+          return `Your request has been submitted successfully.`;
+        },
+        error: (error: { response: string }) => {
+          return 'Failed to send your request. Please try after sometime.';
+        },
+      });
+    },
+    validate: withZodSchema(RegisterFormSchema),
+  });
 
   return (
     <>
@@ -32,13 +73,41 @@ const Contact = () => {
           <div className="flex ">
             <div className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black">
               <h2 className="mb-7 text-2xl font-semibold text-black dark:text-white xl:text-3xl">Reach us out</h2>
-              <form action="" method="POST">
+              <form onSubmit={formik.handleSubmit}>
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <input placeholder="Full name" className="w-full pb-2 pl-1  pt-2  rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2" type="text" />
-                  <input placeholder="Email address" className="w-full pb-2 pl-1 pt-2  rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2" type="email" />
+                  <div className="w-full">
+                    <input id="name" placeholder="Full name" className={`w-full pb-2 pl-1  pt-2  rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-full ${(formik.errors.name && formik.touched.name) ? 'border-red-500 placeholder:text-red-500' : ''}`}
+                      type="name" {...formik.getFieldProps("name")}
+                    />
+                    {formik.errors.name && formik.touched.name && (
+                      <div className="text-sm text-red-500">
+                        {formik.errors.name}
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-full">
+                    <input id="emailAddress" placeholder="Email address" className={`w-full pb-2 pl-1 pt-2  rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-full ${(formik.errors.emailAddress && formik.touched.emailAddress) ? 'border-red-500 placeholder:text-red-500' : ''}`} type="email"
+                      {...formik.getFieldProps("emailAddress")}
+                    />
+                    {formik.errors.emailAddress && formik.touched.emailAddress && (
+                      <div className="text-sm text-red-500">
+                        {formik.errors.emailAddress}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="mb-11.5 flex">
-                  <textarea placeholder="Message" rows={4} className="w-full border rounded-lg pl-1 bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"></textarea>
+                <div className="mb-11.5">
+                  <textarea id="description" placeholder="Message" rows={4} className={`w-full border rounded-lg pl-1 bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white1 ${(formik.errors.description && formik.touched.description) ? 'border-red-500 placeholder:text-red-500' : ''}`}
+                    {...formik.getFieldProps("description")}
+                  ></textarea>
+
+                  {formik.errors.description && formik.touched.description && (
+                    <div className="text-sm text-red-500">
+                      {formik.errors.description}
+
+                    </div>
+
+                  )}
                 </div>
                 <div className="flex flex-wrap gap-4 xl:justify-center ">
                   <button aria-label="send message" className="inline-flex items-center gap-2.5 rounded-lg buttoncolor-bg px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark">
@@ -50,6 +119,7 @@ const Contact = () => {
 
           </div>
         </div>
+        <Toaster position="top-center" duration={5000} richColors={true} visibleToasts={1} />
       </section>
       {/* <!-- ===== Contact End ===== --> */}
     </>

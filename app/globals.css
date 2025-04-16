@@ -491,3 +491,8 @@ html {
   left: 0;
   z-index: 1;
 }
+
+.bg-black {
+  @apply !bg-opacity-50 w-full h-full;
+}
+

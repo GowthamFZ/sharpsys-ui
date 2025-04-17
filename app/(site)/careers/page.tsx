@@ -245,7 +245,7 @@ export default function CareersPage() {
                     </div>
                 </section>
             ))}
-<DialogWithForm open={open} onClose={() => setOpen(false)} />
+
             <section>
                 <EmployeeStories />
             </section>

@@ -7,7 +7,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
-import DialogWithForm  from '@/components/Dialog';
+import DialogWithForm from '@/components/Dialog';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
@@ -26,16 +26,18 @@ export default function CareersPage() {
         setActiveSection(activeSection === section ? null : section);
     };
 
+    const handleClose = () => {setOpen(false)}
+
     useEffect(() => {
         const fetchCareer = async () => {
-          const allCareers = await getCareers();
-          const careerHeader = await getCareerHeader();
-          setCareers(allCareers);
-          setCareerHeaders(careerHeader);
+            const allCareers = await getCareers();
+            const careerHeader = await getCareerHeader();
+            setCareers(allCareers);
+            setCareerHeaders(careerHeader);
         };
-      
+
         fetchCareer();
-      }, []);
+    }, []);
 
     return (
         <>
@@ -105,9 +107,9 @@ export default function CareersPage() {
                                 We are committed to delivering exceptional results. We value actions and our prime focus is on quality work. Join us and be part of a team that prioritizes results and makes an impact.
                             </p>
                             <Link href={"#careersOpen"}>
-                            <button className="bg-[#fe2f53] text-white py-2 px-8 rounded-2xl mt-4">
-                                View Open Roles
-                            </button>
+                                <button className="bg-[#fe2f53] text-white py-2 px-8 rounded-2xl mt-4">
+                                    View Open Roles
+                                </button>
                             </Link>
                         </div>
 
@@ -140,7 +142,7 @@ export default function CareersPage() {
             </section>
 
 
-                            
+
             <section className="min-h-screen w-full relative">
                 <div className="careerperks relative flex px-4 md:px-8 sm:py-4 md:py-2 flex-col items-center justify-center">
 
@@ -182,9 +184,9 @@ export default function CareersPage() {
                     <h3 className="mb-1 text-3xl font-bold tracking-tight text-black dark:text-black">Explore your <span className='bg-gradient-to-r from-orange-400 via-yellow-500 via-lime-500 via-green-500 to-teal-500 text-transparent bg-clip-text'>dream career opportunities</span></h3>
                 </div>
             </section>
-            {careerHeader.map((header) => (
+            {careerHeader.map((header, key) => (
 
-                <section className="bg-white mb-4">
+                <section key={key} className="bg-white mb-4">
                     <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-3">
                         <h5 className="mb-1 text-xl font-bold tracking-tight text-black dark:text-black">{header.name.replace(/&#?\w+;/, match => unicodes[match])}</h5>
 
@@ -236,7 +238,7 @@ export default function CareersPage() {
                                                     </button>
                                                 </td>
                                             </tr>
-                                            : '')
+                                            : null)
                                     ))}
                                 </tbody>
 
@@ -245,11 +247,10 @@ export default function CareersPage() {
                     </div>
                 </section>
             ))}
-
             <section>
                 <EmployeeStories />
+                <DialogWithForm open={open} onClose={handleClose} />
             </section>
-            
         </>
     );
 }

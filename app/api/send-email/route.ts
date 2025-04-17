@@ -8,8 +8,6 @@ export async function POST(request) {
   try {
     // Parse the incoming request (from the client-side)
     const { name, email, subject, message, attachments } = await request.json();
-    
-    console.log("Attachments::::"+email);
     // Create a transporter object using your email service
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -40,7 +38,7 @@ export async function POST(request) {
     await transporter.sendMail(mailOptions);
   } else {
     const mailOptions = {
-      from: email, // Sender's email address
+      from: SMTP_SERVER_USERNAME, // Sender's email address
       to: SITE_MAIL_RECIEVER,                   // Recipient's email address
       subject: subject,            // Subject of the email
       text: message,              // Email content (plain text)

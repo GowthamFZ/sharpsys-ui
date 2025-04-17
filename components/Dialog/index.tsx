@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Button,
   Dialog,
@@ -53,6 +53,14 @@ export default function DialogWithForm({ open, onClose }) {
     file: [],
   };
 
+  // const formikRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (!open && formikRef.current) {
+  //     formikRef.current.resetForm();
+  //   }
+  // }, [open]);
+
   return (
     <>
 
@@ -68,13 +76,14 @@ export default function DialogWithForm({ open, onClose }) {
         <Formik
           initialValues={initialValues}
           validate={withZodSchema(RegisterFormSchema)}
-          onSubmit={(values, { resetForm }) => {
+          // innerRef={formikRef}
+          onSubmit={(values) => {
             console.log("Form submitted:", values);
             const myPromise = new Promise<{ name: string }>((resolve) => {
               setTimeout(() => {
                 resolve({ name: 'Send Request for Demo' });
-                resetForm();
-                onClose();
+                // resetForm();
+                // onClose();
               }, 3000);
             });
             const files: File[] = [...values.file]
@@ -89,12 +98,7 @@ export default function DialogWithForm({ open, onClose }) {
             });
           }}
         >
-          {({ resetForm, errors, touched }) => {
-            useEffect(() => {
-              if (!open) {
-                resetForm(); // reset when dialog is closed
-              }
-            }, [open, resetForm]);
+          {({ errors, touched }) => {
 
             return (
               <Form>
@@ -180,8 +184,8 @@ export default function DialogWithForm({ open, onClose }) {
                       error={!!errors.file && touched.file}
                     />
                     {errors.file && typeof errors.file === 'string' && (
-  <div className="text-xs text-red-500">{errors.file}</div>
-)}
+                      <div className="text-xs text-red-500">{errors.file}</div>
+                    )}
                   </CardBody>
                   <CardFooter className="pt-0 text-right">
                     <Button aria-label="send message" type="submit" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">

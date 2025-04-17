@@ -26,20 +26,17 @@ export default function CareersPage() {
         setActiveSection(activeSection === section ? null : section);
     };
 
-    
-
     useEffect(() => {
         const fetchCareer = async () => {
-            const allCareers = await getCareers();
-            const careerHeader = await getCareerHeader();
-            setCareers(allCareers);
-            setCareerHeaders(careerHeader);
-            setFetchData(true);
-        }
-        if (!fetchData) {
-            fetchCareer();
-        }
-    })
+          const allCareers = await getCareers();
+          const careerHeader = await getCareerHeader();
+          setCareers(allCareers);
+          setCareerHeaders(careerHeader);
+        };
+      
+        fetchCareer();
+      }, []);
+
     return (
         <>
             <section className="pb-10 pt-24 md:pt-28 lg:pt-32">

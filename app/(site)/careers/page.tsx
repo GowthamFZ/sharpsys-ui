@@ -215,9 +215,9 @@ export default function CareersPage() {
                                 </thead>
 
                                 <tbody>
-                                    {careers.map((career) => (
+                                    {careers.map((career, idx) => (
                                         (career.acf.header === header.name.replace(/&#?\w+;/, match => unicodes[match]) ?
-                                            <tr className="bg-white text-black dark:text-black">
+                                            <tr key={idx} className="bg-white text-black dark:text-black">
                                                 <td className="px-6 py-1 font-medium whitespace-nowrap w-96">
                                                     {career.acf.position}
                                                 </td>
@@ -237,7 +237,6 @@ export default function CareersPage() {
                                                     <button type="button" onClick={() => setOpen(true)} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                                         Apply
                                                     </button>
-                                                    <DialogWithForm open={open} onClose={() => setOpen(false)} />
                                                 </td>
                                             </tr>
                                             : '')
@@ -246,13 +245,10 @@ export default function CareersPage() {
 
                             </table>
                         </div>
-
-
-
                     </div>
                 </section>
             ))}
-
+<DialogWithForm open={open} onClose={() => setOpen(false)} />
             <section>
                 <EmployeeStories />
             </section>

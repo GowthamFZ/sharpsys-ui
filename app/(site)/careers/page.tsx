@@ -28,6 +28,8 @@ export default function CareersPage() {
 
     const handleClose = () => {setOpen(false)}
 
+    const handleOpen = () => {setOpen(true)}
+
     useEffect(() => {
         const fetchCareer = async () => {
             const allCareers = await getCareers();
@@ -233,7 +235,7 @@ export default function CareersPage() {
                                                     {career.acf.type}
                                                 </td>
                                                 <td className="px-6 py-1 w-9">
-                                                    <button type="button" onClick={() => setOpen(true)} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                    <button type="button" onClick={handleOpen} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                                         Apply
                                                     </button>
                                                 </td>
@@ -249,8 +251,9 @@ export default function CareersPage() {
             ))}
             <section>
                 <EmployeeStories />
-                <DialogWithForm open={open} onClose={handleClose} />
+                {open && <DialogWithForm open={open} onClose={handleClose} />}
             </section>
+            
         </>
     );
 }

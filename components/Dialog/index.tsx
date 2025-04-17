@@ -82,9 +82,8 @@ export default function DialogWithForm({ open, onClose }) {
             const myPromise = new Promise<{ name: string }>((resolve) => {
               setTimeout(() => {
                 resolve({ name: 'Send Request for Demo' });
-                // resetForm();
-                // onClose();
-              }, 3000);
+                onClose();
+              }, 6000);
             });
             const files: File[] = [...values.file]
             toast.promise(sendEmailWithAttachment({ name: values.name, email: values.emailAddress, subject: `${values.name} have applied for a job posting`, message: `${values.name} have applied for a job posting`, file: files }), {

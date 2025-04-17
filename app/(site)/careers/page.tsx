@@ -7,18 +7,19 @@ import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
-import DialogWithForm from '@/components/Dialog';
+import { useContext } from 'react';
+import { DialogContext } from '../layout';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
 
-
+    const { setOpen } = useContext(DialogContext);
     const [activeSection, setActiveSection] = useState(null);
     const [startCountup, setStartCountup] = useState(false);
     const [careers, setCareers] = useState([]);
     const [fetchData, setFetchData] = useState(false);
     const [careerHeader, setCareerHeaders] = useState([]);
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
     // const handleDialog = () => setOpenDialog((cur) => !cur);
 
     // Toggle the active section
@@ -40,7 +41,7 @@ export default function CareersPage() {
 
         fetchCareer();
     }, []);
-
+    console.log("Rendering Careers Page");
     return (
         <>
             <section className="pb-10 pt-24 md:pt-28 lg:pt-32">
@@ -251,7 +252,7 @@ export default function CareersPage() {
             ))}
             <section>
                 <EmployeeStories />
-                {open && <DialogWithForm open={open} onClose={handleClose} />}
+                {/* {open && <DialogWithForm open={open} onClose={handleClose} />} */}
             </section>
             
         </>

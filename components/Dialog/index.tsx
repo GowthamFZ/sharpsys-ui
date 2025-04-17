@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from "react";
 import {
   Button,
   Dialog,
@@ -53,17 +52,8 @@ export default function DialogWithForm({ open, onClose }) {
     file: [],
   };
 
-  // const formikRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (!open && formikRef.current) {
-  //     formikRef.current.resetForm();
-  //   }
-  // }, [open]);
-
   return (
     <>
-
       <Dialog
         size="lg"
         open={open}

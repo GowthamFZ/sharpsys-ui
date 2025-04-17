@@ -4,17 +4,25 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter, Poppins } from "next/font/google";
 import "../globals.css";
+import { useState, createContext } from 'react';
+import DialogWithForm from '@/components/Dialog';
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
 });
 
+export const DialogContext = createContext({
+  open: false,
+  setOpen: (val: boolean) => {},
+});
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [open, setOpen] = useState(false);
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -22,10 +30,14 @@ export default function RootLayout({
       </head>
       <body className={`dark:bg-black ${poppins.className}`}>
 
+        
+        <DialogContext.Provider value={{ open, setOpen }}>
         <Header />
         {children}
-        <Footer />
-        <ScrollToTop />
+          <DialogWithForm open={open} onClose={() => setOpen(false)} />
+          <Footer />
+          <ScrollToTop />
+        </DialogContext.Provider>
       </body>
     </html>
   );

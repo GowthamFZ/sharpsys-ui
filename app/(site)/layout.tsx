@@ -6,6 +6,7 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import { useState, createContext, useMemo } from 'react';
 import dynamic from "next/dynamic";
+import React from "react";
 
 const DialogWithForm = dynamic(() => import('@/components/Dialog'), {
   ssr: false,
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <DialogContext.Provider value={dialogContextValue}>
           <Header />
           {children}
-          {open && <DialogWithForm />}
+          <MemoizedDialogWithForm open={open} onClose={() => setOpen(false)} />
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>
@@ -47,3 +48,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+const MemoizedDialogWithForm = React.memo(DialogWithForm);

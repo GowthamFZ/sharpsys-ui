@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <DialogContext.Provider value={dialogContextValue}>
           <Header />
           {children}
-          <MemoizedDialogWithForm open={open} onClose={() => setOpen(false)} />
+          {open && <MemoizedDialogWithForm open={open} onClose={() => setOpen(false)} />}
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>

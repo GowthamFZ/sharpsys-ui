@@ -5,7 +5,10 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Inter, Poppins } from "next/font/google";
 import "../globals.css";
 import { useState, createContext } from 'react';
-import DialogWithForm from '@/components/Dialog';
+import dynamic from "next/dynamic";
+const DialogWithForm = dynamic(() => import('@/components/Dialog'), {
+  ssr: false,
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,7 +37,7 @@ export default function RootLayout({
         <DialogContext.Provider value={{ open, setOpen }}>
         <Header />
         {children}
-          {open && <DialogWithForm open={open} onClose={() => setOpen(false)} />}
+          <DialogWithForm/>
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>

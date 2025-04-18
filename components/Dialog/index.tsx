@@ -15,7 +15,7 @@ import DropzoneField from "./dropZoneField";
 import { sendEmailWithAttachment } from "@/lib/send-mail";
 import { useEffect } from "react";
 
-export default function DialogWithForm({ open, onClose }) {
+export default function DialogWithForm({ open }) {
   useEffect(() => {
     console.log("DialogWithForm mounted", Math.random());
     return () => console.log("DialogWithForm unmounted");
@@ -63,7 +63,7 @@ export default function DialogWithForm({ open, onClose }) {
       <Dialog
         size="lg"
         open={open}
-        handler={onClose}
+        handler={open}
         dismiss={{
           outsidePress: false
         }}
@@ -78,7 +78,7 @@ export default function DialogWithForm({ open, onClose }) {
             const myPromise = new Promise<{ name: string }>((resolve) => {
               setTimeout(() => {
                 resolve({ name: 'Send Request for Demo' });
-                onClose();
+                // onClose();
               }, 6000);
             });
             const files: File[] = [...values.file]
@@ -186,7 +186,7 @@ export default function DialogWithForm({ open, onClose }) {
                     <Button aria-label="send message" type="submit" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Submit
                     </Button>
-                    <Button variant="gradient" onClick={onClose} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+                    <Button variant="gradient" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Cancel
                     </Button>
                   </CardFooter>

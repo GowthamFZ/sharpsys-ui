@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CareerElements from "./CareerInfoData"
 import EmployeeStories from '@/components/employeeStories';
 import CountUp from 'react-countup';
@@ -8,17 +8,23 @@ import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
 import DialogWithForm from '@/components/Dialog';
+import { DialogContext } from '../layout';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
 
+    const { open, setOpen } = useContext(DialogContext);
 
+    // Use `setOpen(true)` to open the dialog
+    const handleOpen = () => {
+      setOpen(true);
+    };
     const [activeSection, setActiveSection] = useState(null);
     const [startCountup, setStartCountup] = useState(false);
     const [careers, setCareers] = useState([]);
     const [fetchData, setFetchData] = useState(false);
     const [careerHeader, setCareerHeaders] = useState([]);
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
     // const handleDialog = () => setOpenDialog((cur) => !cur);
 
     // Toggle the active section
@@ -27,8 +33,6 @@ export default function CareersPage() {
     };
 
     const handleClose = () => {setOpen(false)}
-
-    const handleOpen = () => {setOpen(true)}
 
     useEffect(() => {
         const fetchCareer = async () => {
@@ -251,8 +255,8 @@ export default function CareersPage() {
             ))}
             <section>
                 <EmployeeStories />
+                {/* <DialogWithForm open={open} onClose={handleClose} /> */}
             </section>
-            
         </>
     );
 }

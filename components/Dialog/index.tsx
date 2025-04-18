@@ -13,7 +13,8 @@ import { z } from "zod";
 import { toast, Toaster } from "sonner";
 import DropzoneField from "./dropZoneField";
 import { sendEmailWithAttachment } from "@/lib/send-mail";
-import { useCallback, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { DialogContext } from "@/app/(site)/layout";
 
 export default function DialogWithForm() {
   useEffect(() => {
@@ -57,15 +58,16 @@ export default function DialogWithForm() {
     experience: "",
     file: [],
   };
-const [open, setOpen] = useState(false);
-const handleOpen = useCallback(() => setOpen(true), []);
-const handleClose = useCallback(() => setOpen(false), [])
+
+  const { open, setOpen } = useContext(DialogContext);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <>
-    <Button aria-label="send message" onClick={handleOpen} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
-                      Submit
-                    </Button>
       <Dialog
         size="lg"
         open={open}
@@ -84,7 +86,7 @@ const handleClose = useCallback(() => setOpen(false), [])
             const myPromise = new Promise<{ name: string }>((resolve) => {
               setTimeout(() => {
                 resolve({ name: 'Send Request for Demo' });
-                // onClose();
+                handleClose();
               }, 6000);
             });
             const files: File[] = [...values.file]

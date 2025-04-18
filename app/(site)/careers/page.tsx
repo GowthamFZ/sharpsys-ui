@@ -251,7 +251,6 @@ export default function CareersPage() {
             ))}
             <section>
                 <EmployeeStories />
-                {open && <DialogWithForm open={open} />}
             </section>
             
         </>

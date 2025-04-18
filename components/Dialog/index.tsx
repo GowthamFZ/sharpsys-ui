@@ -13,9 +13,9 @@ import { z } from "zod";
 import { toast, Toaster } from "sonner";
 import DropzoneField from "./dropZoneField";
 import { sendEmailWithAttachment } from "@/lib/send-mail";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export default function DialogWithForm({ open }) {
+export default function DialogWithForm() {
   useEffect(() => {
     console.log("DialogWithForm mounted", Math.random());
     return () => console.log("DialogWithForm unmounted");
@@ -57,13 +57,19 @@ export default function DialogWithForm({ open }) {
     experience: "",
     file: [],
   };
+const [open, setOpen] = useState(false);
+const handleOpen = useCallback(() => setOpen(true), []);
+const handleClose = useCallback(() => setOpen(false), [])
 
   return (
     <>
+    <Button aria-label="send message" onClick={handleOpen} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+                      Submit
+                    </Button>
       <Dialog
         size="lg"
         open={open}
-        handler={open}
+        handler={handleClose}
         dismiss={{
           outsidePress: false
         }}
@@ -186,7 +192,7 @@ export default function DialogWithForm({ open }) {
                     <Button aria-label="send message" type="submit" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Submit
                     </Button>
-                    <Button variant="gradient" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+                    <Button variant="gradient" onClick={handleClose} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Cancel
                     </Button>
                   </CardFooter>

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from 'next/link';
+import DialogWithForm from "../Dialog";
 
 const Footer = () => {
   return (
@@ -305,7 +306,7 @@ const Footer = () => {
                   </div>
                 </motion.div>
               </div>
-
+              <DialogWithForm/>
             </div>
           </div>
           {/* <!-- Footer Top --> */}

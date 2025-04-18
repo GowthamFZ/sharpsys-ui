@@ -77,7 +77,7 @@ export default function DialogWithForm() {
         }}
         className="bg-transparent shadow-none"
       >
-        <Formik
+        {/* <Formik
           initialValues={initialValues}
           validate={withZodSchema(RegisterFormSchema)}
           // innerRef={formikRef}
@@ -203,7 +203,47 @@ export default function DialogWithForm() {
               </Form>
             );
           }}
-        </Formik>
+        </Formik> */}
+        <Card id="card" className="m-auto max-w-[42rem] !inset-y-15">
+
+<CardBody className="flex flex-col gap-4 h-96 overflow-y-auto m-4">
+  <Typography variant="h4" color="blue-gray" className="text-center text-sm">
+    Submit your Application
+  </Typography>
+
+  <Typography className="text-sm">
+    Applicant's Name
+  </Typography>
+
+
+
+  <Typography className="text-sm">
+    Email Address
+  </Typography>
+
+
+
+  <Typography className="text-sm">
+    Contact Number
+  </Typography>
+
+
+  <Typography className="text-sm">
+    Years of Exprience
+  </Typography>
+
+
+</CardBody>
+<CardFooter className="pt-0 text-right">
+  <Button aria-label="send message" onClick={handleClose}  className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+    Submit
+  </Button>
+  <Button variant="gradient" onClick={handleClose} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+    Cancel
+  </Button>
+</CardFooter>
+
+</Card>
         <Toaster position="bottom-right" duration={5000} richColors={true} visibleToasts={1} />
       </Dialog>
     </>

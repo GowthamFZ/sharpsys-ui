@@ -13,13 +13,14 @@ import { z } from "zod";
 import { toast, Toaster } from "sonner";
 import DropzoneField from "./dropZoneField";
 import { sendEmailWithAttachment } from "@/lib/send-mail";
-import { useContext, useEffect } from "react";
-import { DialogContext } from "@/app/(site)/layout";
+import { useEffect } from "react";
 
-
-export default function DialogWithForm() {
-  const { open, setOpen } = useContext(DialogContext);
-  const handleClose = () => {setOpen(false)}
+export default function DialogWithForm({ open, onClose }) {
+  useEffect(() => {
+    console.log("DialogWithForm mounted", Math.random());
+    return () => console.log("DialogWithForm unmounted");
+  }, []);
+  console.log("Rendering DialogWithForm");
   const MAX_FILE_SIZE = 5000000
   const RegisterFormSchema = z
     .object({
@@ -62,7 +63,7 @@ export default function DialogWithForm() {
       <Dialog
         size="lg"
         open={open}
-        handler={handleClose}
+        handler={onClose}
         dismiss={{
           outsidePress: false
         }}
@@ -77,7 +78,7 @@ export default function DialogWithForm() {
             const myPromise = new Promise<{ name: string }>((resolve) => {
               setTimeout(() => {
                 resolve({ name: 'Send Request for Demo' });
-                handleClose();
+                onClose();
               }, 6000);
             });
             const files: File[] = [...values.file]
@@ -185,7 +186,7 @@ export default function DialogWithForm() {
                     <Button aria-label="send message" type="submit" className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Submit
                     </Button>
-                    <Button variant="gradient" onClick={handleClose} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
+                    <Button variant="gradient" onClick={onClose} className="focus:outline-none text-white buttoncolor-bg rounded-lg !font-normal text-sm px-5 py-2.5 me-2 mb-2">
                       Cancel
                     </Button>
                   </CardFooter>

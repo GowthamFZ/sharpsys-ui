@@ -37,7 +37,7 @@ export default function RootLayout({
         <DialogContext.Provider value={{ open, setOpen }}>
         <Header />
         {children}
-          <DialogWithForm/>
+          {open && <DialogWithForm open={open} onClose={() => setOpen(false)} />}
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>

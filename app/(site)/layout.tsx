@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <DialogContext.Provider value={dialogContextValue}>
           <Header />
           {children}
-          <DialogWithForm />
+          {open && <DialogWithForm />}
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>

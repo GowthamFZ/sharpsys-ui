@@ -24,7 +24,7 @@ export const DialogContext = createContext({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-
+console.log("Open changes in Layout"+open);
   // Memoize the context value
   const dialogContextValue = useMemo(() => ({ open, setOpen }), [open]);
 

@@ -7,14 +7,13 @@ import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
-import DialogWithForm from '@/components/Dialog';
 import { DialogContext } from '../layout';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
 
     const { open, setOpen } = useContext(DialogContext);
-
+    console.log("Open changes in Career"+open);
     // Use `setOpen(true)` to open the dialog
     const handleOpen = () => {
       setOpen(true);

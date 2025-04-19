@@ -259,6 +259,7 @@ interface DialogProps {
 
 const DialogWithForm = ({ open, onClose }: DialogProps) => {
   console.log("DialogWithForm rendered");
+  console.log("Open changes in Dialog"+open);
   return (
     <Dialog size="lg" open={open} handler={onClose}>
       <Card>

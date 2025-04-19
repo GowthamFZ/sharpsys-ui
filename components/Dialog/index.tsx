@@ -251,6 +251,7 @@
 // }
 
 import { Dialog, Card, CardBody, CardFooter, Button, Typography } from "@material-tailwind/react";
+import { useCallback, useEffect } from "react";
 
 interface DialogProps {
   open: boolean;
@@ -258,10 +259,19 @@ interface DialogProps {
 }
 
 const DialogWithForm = ({ open, onClose }: DialogProps) => {
+  useEffect(() => {
+    console.log("Mounted");
+    return () => {
+      console.log("Unmounted");
+    };
+  }, []);
   console.log("DialogWithForm rendered");
   console.log("Open changes in Dialog"+open);
+  const handleClose = useCallback(() => {
+    if (open) onClose;
+  }, [open]);
   return (
-    <Dialog size="lg" open={open} handler={onClose}>
+    <Dialog size="lg" open={open} handler={handleClose}>
       <Card>
         <CardBody>
           {/* Your form content */}

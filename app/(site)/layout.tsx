@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Poppins } from "next/font/google";
 import "../globals.css";
-import { useState, createContext, useMemo } from 'react';
+import { useState, createContext, useMemo, useCallback } from 'react';
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 console.log("Open changes in Layout"+open);
   // Memoize the context value
   const dialogContextValue = useMemo(() => ({ open, setOpen }), [open]);
+  const handleClose = useCallback(() => setOpen(false), []);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -40,7 +41,7 @@ console.log("Open changes in Layout"+open);
         <DialogContext.Provider value={dialogContextValue}>
           <Header />
           {children}
-          {open && <MemoizedDialogWithForm open={open} onClose={() => setOpen(false)} />}
+          {open && <DialogWithForm open={open} onClose={handleClose} />}
           <Footer />
           <ScrollToTop />
         </DialogContext.Provider>
@@ -48,4 +49,4 @@ console.log("Open changes in Layout"+open);
     </html>
   );
 }
-const MemoizedDialogWithForm = React.memo(DialogWithForm);
+// const MemoizedDialogWithForm = React.memo(DialogWithForm);

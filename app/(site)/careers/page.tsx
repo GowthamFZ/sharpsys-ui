@@ -7,17 +7,17 @@ import VisibilitySensor from 'react-visibility-sensor';
 import CareersCarousel from '@/components/CareersCarousel';
 import { getCareerHeader, getCareers } from '@/lib/service';
 import Link from 'next/link';
-import { DialogContext } from '../layout';
+import DialogWithForm from '@/components/Dialog';
 
 let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
 
-    const { open, setOpen } = useContext(DialogContext);
-    console.log("Open changes in Career"+open);
+    const [isModalOpen, setModalOpen] = useState(false);
+    // console.log("Open changes in Career"+open);
     // Use `setOpen(true)` to open the dialog
-    const handleOpen = () => {
-      setOpen(true);
-    };
+    // const handleOpen = () => {
+    //   setOpen(true);
+    // };
     const [activeSection, setActiveSection] = useState(null);
     const [startCountup, setStartCountup] = useState(false);
     const [careers, setCareers] = useState([]);
@@ -31,7 +31,7 @@ export default function CareersPage() {
         setActiveSection(activeSection === section ? null : section);
     };
 
-    const handleClose = () => {setOpen(false)}
+    // const handleClose = () => {setOpen(false)}
 
     useEffect(() => {
         const fetchCareer = async () => {
@@ -238,7 +238,7 @@ export default function CareersPage() {
                                                     {career.acf.type}
                                                 </td>
                                                 <td className="px-6 py-1 w-9">
-                                                    <button type="button" onClick={handleOpen} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                    <button type="button" onClick={() => setModalOpen(true)} className="focus:outline-none text-white buttoncolor-bg font-small rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                                         Apply
                                                     </button>
                                                 </td>
@@ -254,6 +254,7 @@ export default function CareersPage() {
             ))}
             <section>
                 <EmployeeStories />
+                <DialogWithForm isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
             </section>
         </>
     );

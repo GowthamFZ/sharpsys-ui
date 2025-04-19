@@ -249,44 +249,132 @@
 //     </>
 //   );
 // }
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { z } from 'zod';
 
-import { Dialog, Card, CardBody, CardFooter, Button, Typography } from "@material-tailwind/react";
-import { useCallback, useEffect } from "react";
 
-interface DialogProps {
-  open: boolean;
-  onClose: () => void;
-}
+export default function DialogWithForm({ isOpen, onClose }) {
+  if (!isOpen) return null;
+  const MAX_FILE_SIZE = 5000000
 
-const DialogWithForm = ({ open, onClose }: DialogProps) => {
-  useEffect(() => {
-    console.log("Mounted");
-    return () => {
-      console.log("Unmounted");
-    };
-  }, []);
-  console.log("DialogWithForm rendered");
-  console.log("Open changes in Dialog"+open);
-  const handleClose = useCallback(() => {
-    if (open) onClose;
-  }, [open]);
+  const initialValues = {
+    fullName: '',
+    email: '',
+    message: '',
+    resume: null,
+  };
+
+  const RegisterFormSchema = z
+      .object({
+        fullName: z
+          .string()
+          .min(2, "Name must be at least 2 characters long")
+          .max(50, "Name should be at most 25 characters long"),
+          email: z
+          .string().email("Invalid Email"),
+        contactNumber: z
+          .string()
+          .min(10, "Invalid Contact Number")
+          .max(10, "Invalid Contact Number")
+          .regex(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/, "Invalid Contact Number"),
+        experience: z
+          .string()
+          .min(2, "Name must be at least 2 characters long")
+          .max(50, "Name should be at most 25 characters long"),
+          resume: z
+          .any()
+          // To not allow empty files
+          .refine((files) => files?.length >= 1, { message: 'Please upload a file.' })
+          // To not allow files larger than 5MB
+          .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+            message: `Max file size is 5MB.`,
+          }),
+      });
+    type RegisterFormSchemaType = z.infer<typeof RegisterFormSchema>;
+  const handleSubmit = (values) => {
+    console.log(values);
+    alert('Form submitted!');
+    onClose(); // Close the modal after submission
+  };
+
   return (
-    <Dialog size="lg" open={open} handler={handleClose}>
-      <Card>
-        <CardBody>
-          {/* Your form content */}
-          <Typography className="text-sm">
-    Email Address
-  </Typography>
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white rounded-lg p-6 w-full max-w-lg">
+        <h2 className="text-xl font-bold mb-4">Apply for this Position</h2>
+        
+        <Formik
+          initialValues={initialValues}
+          validationSchema={RegisterFormSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            handleSubmit(values);
+            setSubmitting(false);
+          }}
+        >
+          {({ setFieldValue, isSubmitting }) => (
+            <Form className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium">Full Name</label>
+                <Field
+                  type="text"
+                  name="fullName"
+                  className="w-full mt-1 p-2 border rounded-md"
+                />
+                <ErrorMessage name="fullName" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-        </CardBody>
-        <CardFooter>
-          <Button onClick={onClose}>Close</Button>
-          <Button onClick={() => console.log("Form submitted")}>Submit</Button>
-        </CardFooter>
-      </Card>
-    </Dialog>
+              <div>
+                <label className="block text-sm font-medium">Email</label>
+                <Field
+                  type="email"
+                  name="email"
+                  className="w-full mt-1 p-2 border rounded-md"
+                />
+                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium">Resume</label>
+                <input
+                  name="resume"
+                  type="file"
+                  className="w-full mt-1 p-2 border rounded-md"
+                  onChange={(event) => {
+                    setFieldValue("resume", event.currentTarget.files[0]);
+                  }}
+                />
+                <ErrorMessage name="resume" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium">Message</label>
+                <Field
+                  as="textarea"
+                  name="message"
+                  className="w-full mt-1 p-2 border rounded-md"
+                  rows="4"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-4 py-2 text-sm bg-gray-200 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
   );
-};
-
-export default DialogWithForm;
+}

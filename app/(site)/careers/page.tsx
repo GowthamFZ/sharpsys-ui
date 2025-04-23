@@ -13,25 +13,16 @@ let unicodes = { '&amp;': "&" }
 export default function CareersPage() {
 
     const [isModalOpen, setModalOpen] = useState(false);
-    // console.log("Open changes in Career"+open);
-    // Use `setOpen(true)` to open the dialog
-    // const handleOpen = () => {
-    //   setOpen(true);
-    // };
     const [activeSection, setActiveSection] = useState(null);
     const [startCountup, setStartCountup] = useState(false);
     const [careers, setCareers] = useState([]);
     const [fetchData, setFetchData] = useState(false);
     const [careerHeader, setCareerHeaders] = useState([]);
-    // const [open, setOpen] = useState(false);
-    // const handleDialog = () => setOpenDialog((cur) => !cur);
 
     // Toggle the active section
     const toggleSection = (section) => {
         setActiveSection(activeSection === section ? null : section);
     };
-
-    // const handleClose = () => {setOpen(false)}
 
     useEffect(() => {
         const fetchCareer = async () => {

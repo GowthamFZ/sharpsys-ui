@@ -10,7 +10,7 @@ import BusinessIntelligence from '../BusinessIntelligence';
 import StaffAugmentation from '../StaffAugmentation';
 
 const ServicesMenu = (props) => {
-    const [isHovered, setIsHovered] = useState(0);
+    const [isHovered, setIsHovered] = useState(1);
     const [active, setActive] = useState("");
     const isOpen = props.menuOpen;
     const handleMouseOver = (e) => {
@@ -33,7 +33,7 @@ const ServicesMenu = (props) => {
                 break
             case "4":
                 setIsHovered(5)
-                setActive("Staff Augumentation")
+                setActive("Staff Augmentation")
                 break
         }
     }
@@ -46,7 +46,7 @@ const ServicesMenu = (props) => {
     useEffect(() => {
         !isOpen ?
             setIsHovered(0) : ''
-    })
+    }, [isOpen])
 
     return (
         <>

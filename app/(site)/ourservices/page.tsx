@@ -5,6 +5,8 @@ import ServicesCRM from "@/components/OurServices/CRM";
 import ServicesAnalytics from "@/components/OurServices/AdvancedAnalytics";
 import ServicesBusinessIntelligence from "@/components/OurServices/BusinessIntelligence";
 import ServicesStaffAugmentation from "@/components/OurServices/StaffAugmentation";
+import Subscribe from "@/components/Subscribe";
+import ContactForm from "@/components/ContactForm";
 
 
 export const metadata: Metadata = {
@@ -29,28 +31,10 @@ export default function OurServicePage() {
                   cloud-powered solutions.
                 </p>
               </div>
-              <div className="animate-right md:w-9/12 lg:w-1/2">
+              <div className="flex ">
                 <div className="animate_top w-full rounded-lg bg-white p-7.5 shadow-solid-8 dark:border dark:border-strokedark dark:bg-black">
-                  <h2 className="mb-7 text-2xl font-semibold text-blacktext dark:text-white xl:text-3xl">Get Started with us</h2>
-                  <form action="" method="POST">
-                    <div className="mb-4 flex">
-                      <input placeholder="Full name" className="w-full pb-2 pl-1  pt-2 rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-blacktext focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white" type="text" />
-                    </div>
-                    <div className="mb-4 flex">
-                      <input placeholder="Email address" className="w-full pb-2 pl-1 pt-2 rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-blacktext focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white" type="email" />
-                    </div>
-                    <div className="mb-4 flex">
-                      <input placeholder="Mobile Number" className="w-full pb-2 pl-1 pt-2 rounded-lg border bg-transparent focus:border-waterloo focus:placeholder:text-blacktext focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white" type="email" />
-                    </div>
-                    <div className="mb-4 flex">
-                      <textarea placeholder="Message" rows={4} className="w-full border rounded-lg pl-1 bg-transparent focus:border-waterloo focus:placeholder:text-blacktext focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"></textarea>
-                    </div>
-                    <div className="flex flex-wrap gap-4 xl:justify-center">
-                      <button aria-label="send message" className="inline-flex items-center gap-2.5 rounded-lg buttoncolor-bg px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark">
-                        Request a Demo
-                      </button>
-                    </div>
-                  </form>
+                  <h2 className="mb-7 text-2xl font-semibold text-black dark:text-white xl:text-3xl">Get Started with us</h2>
+                  <ContactForm />
                 </div>
               </div>
             </div>
@@ -215,43 +199,26 @@ export default function OurServicePage() {
       <ServicesBusinessIntelligence />
       <ServicesStaffAugmentation />
       <section>
-                <div className="min-h-64 w-full flex items-center justify-center bg-[url('/images/ourProducts/ourProducts_bg_4.jpg')] bg-cover bg-center">
-                    <div className="max-w-6xl mx-auto py-8 px-8 flex flex-col md:flex-row items-center md:space-y-0">
-                        <div className=" w-full md:w-1/2 p-8">
-                            <div>
-                                <img
-                                    src="/images/ourProducts/email.jpg"
-                                    alt="Email"
-                                    className="rounded-lg"
-                                />
-                            </div>
-                        </div>
-                        <div className="text-white md:w-1/2">
+        <div className="min-h-64 w-full flex items-center justify-center bg-[url('/images/ourProducts/ourProducts_bg_4.jpg')] bg-cover bg-center">
+          <div className="max-w-6xl mx-auto py-8 px-8 flex flex-col md:flex-row items-center md:space-y-0">
+            <div className=" w-full md:w-1/2 p-8">
+              <div>
+                <img
+                  src="/images/ourProducts/email.jpg"
+                  alt="Email"
+                  className="rounded-lg"
+                />
+              </div>
+            </div>
+            <div className="text-white md:w-1/2">
               <h2 className="text-3xl font-bold mb-6">
                 Interested in Enterprise Solutions for your company?
               </h2>
-                        <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
-                            <button
-                                className="!absolute right-1 top-1 z-10 select-none rounded buttoncolor-bg py-2 px-1 text-center align-middle text-xs uppercase text-white transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
-                                type="button"
-                                data-ripple-light="true"
-                            >
-                                Subscribe
-                            </button>
-                            <input
-                                type="email"
-                                className="peer h-full w-full rounded-[7px] border border-buttoncolor-bg bg-slate-50 px-3 py-2.5 pr-20 text-sm font-normal text-blacktext outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-buttoncolor-bg placeholder-shown:border-t-buttoncolor-bg focus:border-2 focus:buttoncolor-bg focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:buttoncolor-bg"
-                                placeholder=" "
-                                required
-                            />
-                            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blacktext transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-white after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blacktext peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-white peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-white peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent">
-                                Email Address
-                            </label>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+              <Subscribe />
+            </div>
+          </div>
+        </div>
+      </section>
       <ServiceFAQ />
     </>
   );

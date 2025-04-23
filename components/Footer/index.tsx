@@ -1,9 +1,61 @@
 "use client";
+import { sendEmail } from "@/lib/send-mail";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from 'next/link';
+import { useRef } from "react";
+import { toast, Toaster } from "sonner";
 
 const Footer = () => {
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    const emailValue = emailRef.current?.value;
+    const htmlContent = `
+  <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; border-radius: 8px; padding: 24px; color: #333; border: 1px solid #eaeaea;">
+
+    <!-- Title -->
+    <h2 style="text-align: center; color: #2c3e50;">🎉 You're Now Subscribed to Sharpsys Software!</h2>
+
+    <p>Hello There,</p>
+
+    <p>Thanks for subscribing to our newsletter! You'll now receive:</p>
+    <ul style="padding-left: 20px;">
+      <li>✨ Exclusive updates</li>
+      <li>📦 Product announcements</li>
+      <li>📰 Curated content & tips</li>
+    </ul>
+
+    <p>We’re excited to have you on board!</p>
+
+    <hr style="margin: 32px 0; border: none; border-top: 1px solid #eee;" />
+
+    <p style="text-align: center; font-size: 13px; color: #888;">
+      Don't want updates? <a href="https://yourdomain.com/unsubscribe" style="color: #007BFF; text-decoration: none;">Unsubscribe here</a>.
+    </p>
+
+    <p style="text-align: center; font-size: 12px; color: #aaa; margin-top: 16px;">
+      &copy; ${new Date().getFullYear()} Sharpsys Software Solutions [l] Pvt. Ltd., All rights reserved.
+    </p>
+  </div>
+`;
+
+    const myPromise = new Promise<{ name: string }>((resolve) => {
+      setTimeout(() => {
+        resolve({ name: 'Send Request for Demo' });
+      }, 3000);
+    });
+
+    toast.promise(sendEmail({ name: emailValue, email: emailValue, subject: `${emailValue} has subscribed for newsletter.`, message: htmlContent }), {
+      loading: 'Sending your request...',
+      success: (data: { name: string }) => {
+        return `Thanks for your interest. Our sales team will get back to you soon.`;
+      },
+      error: (error: { response: string }) => {
+        return 'Failed to send your request. Please try after sometime.';
+      },
+    });
+  };
   return (
     <>
       <footer className="border-t border-stroke bg-blacksection text-white dark:border-strokedark dark:bg-blacksection">
@@ -48,10 +100,12 @@ const Footer = () => {
                       className="!absolute right-1 top-1 z-10 select-none rounded buttoncolor-bg py-2 px-1 text-center align-middle text-xs uppercase text-white transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
                       type="button"
                       data-ripple-light="true"
+                      onClick={handleClick}
                     >
                       Subscribe
                     </button>
                     <input
+                      ref={emailRef}
                       type="email"
                       className="peer h-full w-full rounded-[7px] border border-buttoncolor-bg bg-transparent px-3 py-2.5 pr-20 text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-buttoncolor-bg placeholder-shown:border-t-buttoncolor-bg focus:border-2 focus:buttoncolor-bg focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:buttoncolor-bg"
                       placeholder=" "
@@ -60,6 +114,7 @@ const Footer = () => {
                     <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-white transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-white after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-white peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-white peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-white peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-white">
                       Email Address
                     </label>
+                    <Toaster position="top-center" duration={5000} richColors={true} visibleToasts={1} />
                   </div>
 
 
@@ -72,14 +127,6 @@ const Footer = () => {
                           d="M40.7568 32.1716L59.3704 11H54.9596L38.7974 29.383L25.8887 11H11L30.5205 38.7983L11 61H15.4111L32.4788 41.5869L46.1113 61H61L40.7557 32.1716H40.7568ZM34.7152 39.0433L32.7374 36.2752L17.0005 14.2492H23.7756L36.4755 32.0249L38.4533 34.7929L54.9617 57.8986H48.1865L34.7152 39.0443V39.0433Z"
                           fill="#000" />
                       </svg></a>
-                    {/* <a href="https://www.w3schools.com" target="_blank"
-                      className="bg-white p-2 rounded-3xl flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 71 72" fill="none">
-                        <path
-                          d="M46.4233 38.6403L47.7279 30.3588H39.6917V24.9759C39.6917 22.7114 40.8137 20.4987 44.4013 20.4987H48.1063V13.4465C45.9486 13.1028 43.7685 12.9168 41.5834 12.8901C34.9692 12.8901 30.651 16.8626 30.651 24.0442V30.3588H23.3193V38.6403H30.651V58.671H39.6917V38.6403H46.4233Z"
-                          fill="#000" />
-                      </svg>
-                    </a> */}
                     <a href="https://www.instagram.com/sharpsyssoft/" target="_blank"
                       className="bg-white p-2 rounded-3xl flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 71 72" fill="none">
@@ -101,9 +148,6 @@ const Footer = () => {
                           d="M24.7612 55.999V28.3354H15.5433V55.999H24.7621H24.7612ZM20.1542 24.5591C23.3679 24.5591 25.3687 22.4348 25.3687 19.7801C25.3086 17.065 23.3679 15 20.2153 15C17.0605 15 15 17.065 15 19.7799C15 22.4346 17.0001 24.5588 20.0938 24.5588H20.1534L20.1542 24.5591ZM29.8633 55.999H39.0805V40.5521C39.0805 39.7264 39.1406 38.8985 39.3841 38.3088C40.0502 36.6562 41.5668 34.9455 44.1138 34.9455C47.4484 34.9455 48.7831 37.4821 48.7831 41.2014V55.999H58V40.1376C58 31.6408 53.4532 27.6869 47.3887 27.6869C42.4167 27.6869 40.233 30.4589 39.0198 32.347H39.0812V28.3364H29.8638C29.9841 30.9316 29.8631 56 29.8631 56L29.8633 55.999Z"
                           fill="#000" />
                       </svg></a>
-
-
-
                   </div>
                 </motion.div>
               </div>
@@ -126,37 +170,37 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 > <div className="space-y-3">
-                  <h4 className="mb-2 text-xl dark:text-white">
-                    Home
-                  </h4>
+                    <h4 className="mb-2 text-xl dark:text-white">
+                      Home
+                    </h4>
 
-                  <ul>
-                    <li>
-                      <Link href="/#our-clients" className="mb-3 text-sm inline-block hover:text-primary">
-                        Our Clients
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/#why-sharpsys" className="mb-3 text-sm inline-block hover:text-primary">
-                        Why Sharpsys?
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="/ourproducts" className="mb-3 text-sm inline-block hover:text-primary">
-                        Our Products
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/ourservices" className="mb-3 text-sm inline-block hover:text-primary">
-                        Our Services
-                      </a>
-                    </li>
-                    <li>
-                      <Link href="/#testimonials" className="mb-3 text-sm inline-block hover:text-primary">
-                        Testimonials
-                      </Link>
-                    </li>
-                  </ul>
+                    <ul>
+                      <li>
+                        <Link href="/#our-clients" className="mb-3 text-sm inline-block hover:text-primary">
+                          Our Clients
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/#why-sharpsys" className="mb-3 text-sm inline-block hover:text-primary">
+                          Why Sharpsys?
+                        </Link>
+                      </li>
+                      <li>
+                        <a href="/ourproducts" className="mb-3 text-sm inline-block hover:text-primary">
+                          Our Products
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/ourservices" className="mb-3 text-sm inline-block hover:text-primary">
+                          Our Services
+                        </a>
+                      </li>
+                      <li>
+                        <Link href="/#testimonials" className="mb-3 text-sm inline-block hover:text-primary">
+                          Testimonials
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
                 </motion.div>
               </div>
@@ -180,38 +224,38 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
-                   <div className="space-y-4">
-                  <h5 className="mb-2 text-xl dark:text-white">
-                    Our Services
-                  </h5>
+                  <div className="space-y-4">
+                    <h5 className="mb-2 text-xl dark:text-white">
+                      Our Services
+                    </h5>
 
-                  <ul>
-                    <li>
-                      <Link href="/ourservices#enterprise-solutions" className="mb-3 text-sm inline-block hover:text-primary">
-                        Enterprise Solutions
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/ourservices#services-crm" className="mb-3 text-sm inline-block hover:text-primary">
-                        CRM
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="/ourservices#advanced-analytics" className="mb-3 text-sm inline-block hover:text-primary">
-                        Advanced Analytics
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/ourservices#business-intelligence" className="mb-3 text-sm inline-block hover:text-primary">
-                        Business Intelligence
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/ourservices#staff-augmentation" className="mb-3 text-sm inline-block hover:text-primary">
-                        Staff Augmentation
-                      </a>
-                    </li>
-                  </ul>
+                    <ul>
+                      <li>
+                        <Link href="/ourservices#enterprise-solutions" className="mb-3 text-sm inline-block hover:text-primary">
+                          Enterprise Solutions
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/ourservices#services-crm" className="mb-3 text-sm inline-block hover:text-primary">
+                          CRM
+                        </Link>
+                      </li>
+                      <li>
+                        <a href="/ourservices#advanced-analytics" className="mb-3 text-sm inline-block hover:text-primary">
+                          Advanced Analytics
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/ourservices#business-intelligence" className="mb-3 text-sm inline-block hover:text-primary">
+                          Business Intelligence
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/ourservices#staff-augmentation" className="mb-3 text-sm inline-block hover:text-primary">
+                          Staff Augmentation
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </motion.div>
               </div>
@@ -235,28 +279,28 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
-                   <div className="space-y-4">
-                  <h4 className="mb-2 text-xl dark:text-white">
-                    Our Products
-                  </h4>
+                  <div className="space-y-4">
+                    <h4 className="mb-2 text-xl dark:text-white">
+                      Our Products
+                    </h4>
 
-                  <ul>
-                    <li>
-                      <Link href="ourproducts#drag-drop" className="mb-3 text-sm inline-block hover:text-primary">
-                        Drag & Drop
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="ourproducts#e-invoice" className="mb-3 text-sm inline-block hover:text-primary">
-                        E-Invoice Integration
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="ourproducts#e-invoice" className="mb-3 text-sm inline-block hover:text-primary">
-                        Quote Engine
-                      </Link>
-                    </li>
-                  </ul>
+                    <ul>
+                      <li>
+                        <Link href="ourproducts#drag-drop" className="mb-3 text-sm inline-block hover:text-primary">
+                          Drag & Drop
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="ourproducts#e-invoice" className="mb-3 text-sm inline-block hover:text-primary">
+                          E-Invoice Integration
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="ourproducts#e-invoice" className="mb-3 text-sm inline-block hover:text-primary">
+                          Quote Engine
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
                 </motion.div>
               </div>
@@ -280,28 +324,28 @@ const Footer = () => {
                   viewport={{ once: true }}
                   className="animate_top"
                 >
-                   <div className="space-y-4">
-                  <h4 className="mb-2 text-xl dark:text-white">
-                    Company
-                  </h4>
+                  <div className="space-y-4">
+                    <h4 className="mb-2 text-xl dark:text-white">
+                      Company
+                    </h4>
 
-                  <ul>
-                    <li>
-                      <a href="/aboutus" className="mb-3 text-sm inline-block hover:text-primary">
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/contactus" className="mb-3 text-sm inline-block hover:text-primary">
-                        Contact us
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/careers" className="mb-3 text-sm inline-block hover:text-primary">
-                        Career
-                      </a>
-                    </li>
-                  </ul>
+                    <ul>
+                      <li>
+                        <a href="/aboutus" className="mb-3 text-sm inline-block hover:text-primary">
+                          About us
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/contactus" className="mb-3 text-sm inline-block hover:text-primary">
+                          Contact us
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/careers" className="mb-3 text-sm inline-block hover:text-primary">
+                          Career
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </motion.div>
               </div>

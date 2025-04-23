@@ -2,7 +2,25 @@
 import React, { useState } from "react";
 
 const ServicesAnalytics = () => {
-  const [activeMenu, setActiveMenu] = useState(1);
+  const menuItems = [
+    { id: 1, label: 'Consulting', icon: '/images/services/AA/consultation.png' },
+    { id: 2, label: 'Data Analytics', icon: '/images/services/AA/dataanalytics.png' },
+    { id: 3, label: 'ETL Migration', icon: '/images/services/AA/etlmigration.png' },
+    { id: 4, label: 'Data Migration', icon: '/images/services/AA/datamigration.png' },
+    { id: 5, label: 'Data Warehousing', icon: '/images/services/AA/datawarehousing.png' },
+    { id: 6, label: 'Machine Learning', icon: '/images/services/AA/machinelearning.png' },
+  ];
+
+  const gradientClasses = [
+    'bg-gradient-to-tr from-lime-400 to-yellow-400',
+    'bg-gradient-to-br from-yellow-300 to-orange-500',
+    'bg-gradient-to-br from-orange-400 to-fuchsia-800',
+    'bg-gradient-to-bl from-fuchsia-700 to-rose-500',
+    'bg-gradient-to-bl from-rose-500 to-cyan-300',
+    'bg-gradient-to-br from-lime-300 to-cyan-300',
+  ];
+
+  // const [activeMenu, setActiveMenu] = useState(1);
   const [activeSection, setActiveSection] = useState(null);
 
   // Toggle the active section
@@ -10,9 +28,15 @@ const ServicesAnalytics = () => {
     setActiveSection(activeSection === section ? null : section);
   };
 
-  const anchorDivClick = (elemnent) => {
-    setActiveMenu(elemnent);
-  }
+  // const anchorDivClick = (elemnent) => {
+  //   setActiveMenu(elemnent);
+  // }
+
+  const [activeMenu, setActiveMenu] = useState<number>(1);
+
+  const anchorDivClick = (id: number) => {
+    setActiveMenu(id);
+  };
 
   return (
     <>
@@ -334,42 +358,30 @@ const ServicesAnalytics = () => {
                     </div>
                   </> : ''}
               </div>
-              <div className="w-4/5 pl-8 m-auto">
-                {/* Circular Menu */}
-                <div className="links">
-                  <img src="/images/services/logo_img.png" className="cn-img" />
-                  <ul className="links__list" style={{ "--item-total": 6 } as React.CSSProperties}>
-                    <li className="links__item" style={{ "--item-count": 1 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 1 ? 'activeLink' : 'bg-gradient-to-tr from-lime-400 to-yellow-400'} `} onClick={() => anchorDivClick(1)}>
-                        <img src="/images/services/AA/consultation.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 1 ? 'activeText' : ''}`}>Consulting</span>
-                      </div>
-                    </li>
-                    <li className="links__item" style={{ "--item-count": 2 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 2 ? 'activeLink' : 'bg-gradient-to-br from-yellow-300 to-orange-500'}`} onClick={() => anchorDivClick(2)}>
-                        <img src="/images/services/AA/dataanalytics.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 2 ? 'activeText' : ''}`}>Data Analytics</span></div>
-                    </li>
-                    <li className="links__item" style={{ "--item-count": 3 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 3 ? 'activeLink' : 'bg-gradient-to-br from-orange-400 to-fuchsia-800'}`} onClick={() => anchorDivClick(3)}>
-                        <img src="/images/services/AA/etlmigration.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 3 ? 'activeText' : ''}`}>ETL Migration</span></div>
-                    </li>
-                    <li className="links__item" style={{ "--item-count": 4 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 4 ? 'activeLink' : 'bg-gradient-to-bl from-fuchsia-700 to-rose-500'}`} onClick={() => anchorDivClick(4)}>
-                        <img src="/images/services/AA/datamigration.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 4 ? 'activeText' : ''}`}>Data Migration</span></div>
-                    </li>
-                    <li className="links__item" style={{ "--item-count": 5 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 5 ? 'activeLink' : 'bg-gradient-to-bl from-rose-500 to-cyan-300'}`} onClick={() => anchorDivClick(5)}>
-                        <img src="/images/services/AA/datawarehousing.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 5 ? 'activeText' : ''}`}>Data Warehousing</span></div>
-                    </li>
-                    <li className="links__item" style={{ "--item-count": 6 } as React.CSSProperties}>
-                      <div className={`links__link ${activeMenu === 6 ? 'activeLink' : 'bg-gradient-to-br from-lime-300 to-cyan-300'}`} onClick={() => anchorDivClick(6)}>
-                        <img src="/images/services/AA/machinelearning.png" className="links__icon" />
-                        <span className={`links__text ${activeMenu === 6 ? 'activeText' : ''}`}>Machine Learning</span></div>
-                    </li>
+              <div className="w-full max-w-[500px] md:max-w-[600px] lg:max-w-[700px] px-4 mx-auto">
+                <div className="links relative aspect-square">
+                  <img
+                    src="/images/services/logo_img.png"
+                    className="cn-img absolute  transform -translate-x-1/2 -translate-y-1/2 w-20 md:w-24 lg:w-28"
+                  />
+                  <ul className="links__list" style={{ '--item-total': menuItems.length } as React.CSSProperties}>
+                    {menuItems.map((item, idx) => (
+                      <li
+                        key={item.id}
+                        className="links__item"
+                        style={{ '--item-count': idx + 1 } as React.CSSProperties}
+                      >
+                        <div
+                          className={`links__link ${activeMenu === item.id ? 'activeLink' : gradientClasses[idx % gradientClasses.length]}'}`}
+                          onClick={() => anchorDivClick(item.id)}
+                        >
+                          <img src={item.icon} className="links__icon w-8 md:w-10 lg:w-12" />
+                          <span className={`links__text text-sm md:text-base lg:text-lg ${activeMenu === item.id ? 'activeText' : ''}`}>
+                            {item.label}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

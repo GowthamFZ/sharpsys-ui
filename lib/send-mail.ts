@@ -18,7 +18,6 @@ export async function sendEmailWithAttachment({
       reader.onload = () => {
         if (typeof reader.result === 'string') {
           resolve(reader.result); // it's safe to treat it as a string now
-          console.log("File reader::::" + reader.result)
         } else {
           reject(new Error('FileReader result is not a string'));
           console.log("File reader Error ::::")
@@ -29,7 +28,6 @@ export async function sendEmailWithAttachment({
 
   const uploadedFile = file[0];
   const base64 = await toBase64(uploadedFile);
-  console.log("Uploaded File::::" + uploadedFile);
   let response;
   response = await fetch('/api/send-email', {
     method: 'POST',

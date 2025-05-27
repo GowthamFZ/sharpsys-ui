@@ -72,6 +72,5 @@ export default function advancedAnalytics() {
         <div className='vertical-center !top-48 bg-green w-4 h-4 !translate-y-3/4'></div>
       </div>
     </>
-
   )
 };
